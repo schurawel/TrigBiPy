@@ -1,0 +1,12 @@
+genrule(
+    name = "paper",
+    srcs = [
+        "paper.tex",
+        "trigbipy_mvp.py", # Hier für den Code-Import deklarieren
+    ],
+    outs = ["paper.pdf"],
+    cmd = "cp $(location paper.tex) . && " +
+          "cp $(location trigbipy_mvp.py) . && " +
+          "pdflatex -interaction=nonstopmode paper.tex && " +
+          "cp paper.pdf $@",
+)
