@@ -32,7 +32,7 @@
 		{\huge\bfseries Incoherence is all you need.\par}
 		\vspace{1cm}
 		
-		{\Large\itshape TrigBiPy: Eine formale epistemische Grammatik zur algorithmengestützten Erkenntnisgewinnung\par}
+		{\Large\itshape TrigBiPy: Eine formale epistemische Grammatik zur algorithmengestützten Erkenntnisgewinnung über kontinuierliche Hypothesenräume\par}
 		\vspace{3cm}
 		
 		{\Large\textbf{Jason A. Schurawel}\par}
@@ -50,20 +50,19 @@
 	\addcontentsline{toc}{section}{A\quad Abstract}
 	\begin{abstract}
 		\begin{quote}
-		Der vorliegende Artikel skizziert die Architektur von „TrigBiPy“, einem formalen System zur Validierung menschlicher Erkenntnisprozesse. Entgegen traditionellen Ansätzen des Personal Knowledge Managements (PKM) und probabilistischer Sprachmodelle postuliert TrigBiPy, dass Erkenntnisgewinn als deterministisches System epistemischer Zustandsübergänge (Morphismen) beschrieben werden kann. Durch die Reduktion auf vier fundamentale Kategorien (Quelle, Beobachtung, Theorie, Diskurs) wird eine geschlossene algebraische Struktur definiert, wobei Erkenntnis sich asymptotisch in Attraktoren stabilisiert. Das System fungiert dabei nicht als semantischer Wahrheitsgenerator, sondern als syntaktischer Compiler (epistemischer Linter), der logische Inkohärenzen aufdeckt und Argumente algorithmisch bewertet. Implementiert als \emph{Knowledge-as-Code}-Architektur lässt sich die Kohärenz durch SAT-Solver, Lean oder Prolog formal validieren.
+			Der vorliegende Artikel skizziert die Architektur von „TrigBiPy“, einem formalen System zur Validierung menschlicher Erkenntnisprozesse. Entgegen traditionellen Ansätzen des Personal Knowledge Managements (PKM) und rein probabilistischer Sprachmodelle postuliert TrigBiPy, dass Erkenntnisgewinn als ein mathematisches System epistemischer Zustandsübergänge (Morphismen) beschrieben werden kann. Durch die Reduktion auf drei fundamentale Kategorien (Quelle, Beobachtung, Hypothese) wird eine geschlossene algebraische Struktur definiert. Epistemische Aussagen und Spannungsfelder werden in einem einheitlichen, kontinuierlichen Hypothesenraum zusammengeführt, in dem Elementen reellwertige Gewissheiten $v \in [0, 1]$ zugewiesen sind. Das System fungiert als syntaktisch-probabilistischer Compiler (epistemischer Linter), der logische Inkohärenzen als informationstheoretische Spannungen aufdeckt und Argumentationsketten algorithmisch evaluiert. Die interne Dynamik reguliert sich dabei über exklusive Hypothesengruppen, funktionale Inferenzmatrizen und rekursive Makro-Ontologien. Implementiert als \emph{Knowledge-as-Code}-Architektur lässt sich die Kohärenz des Systems durch SAT-Solver, probabilistische Logikprogrammierung oder abhängige Typsysteme formal validieren.
 		\end{quote}
 	\end{abstract}
 	
-	
 	\section{Einleitung: Die strukturelle Krise der Wissensrepräsentation}
-	Historische Konzepte der "Augmented Intelligence" (etwa Bushs Memex oder Nelsons Xanadu) scheitern in der Praxis oft an der kognitiven Überlastung des Nutzers. Wenn alle Informationen frei miteinander verknüpfbar sind, entsteht ein semantischer Sumpf ohne logische Verifikationsinstanz. Die Suche nach der perfekten Methode für ein spezifisches Forschungsobjekt ist oft ein Holzweg, da sich die Methode nicht am Inhalt des Objekts festmachen lässt. 
+	Historische Konzepte der "Augmented Intelligence" (etwa Bushs Memex oder Nelsons Xanadu) scheitern in der Praxis oft an der kognitiven Überlastung des Nutzers. Wenn alle Informationen frei miteinander verknüpfbar sind, entsteht ein semantischer Sumpf ohne logische Verifikationsinstanz. Die Suche nach der perfekten Methode für ein spezifisches Forschungsobjekt ist oft ein Holzweg, da sich die Methode nicht am Inhalt des Objekts festmachen lässt.
 	
-	Das TrigBiPy-Modell begegnet diesem Problem durch die These, dass Erkenntnisgewinnung kein ungeordneter kreativer Akt ist, sondern eine kontrollierte Dynamik der Inkohärenzreduktion. Das System erzeugt keine autonome Wahrheit, sondern prüft, ob epistemische Konstruktionen innerhalb einer definierten Grammatik zulässig sind. TrigBiPy fungiert somit als epistemischer Linter – vergleichbar mit Theorembeweisern wie \emph{Lean} oder \emph{Coq}, in denen Beweise als Programme und Aussagen als Typen behandelt werden.
+	Das TrigBiPy-Modell begegnet diesem Problem durch die These, dass Erkenntnisgewinnung kein ungeordneter kreativer Akt ist, sondern eine kontrollierte Dynamik der Inkohärenzreduktion innerhalb eines gewichteten Hypothesenraums. Das System erzeugt keine autonome Wahrheit, sondern prüft, ob epistemische Konstruktionen innerhalb einer definierten Grammatik zulässig sind und wie sich neue Evidenzen auf das globale Geflecht aus Hypothesen auswirken. TrigBiPy fungiert somit als epistemischer Linter – vergleichbar mit Theorembeweisern wie \emph{Lean} oder \emph{Coq}, erweitert jedoch um eine kontinuierliche Bewertungsfunktion, um Widersprüche als graduelle Spannungsfelder mathematisch handhabbar zu machen.
 	
 	\section{Architektur des Modells: Epistemische Ontologie und Syntax}
 	
-	\subsection{Kategoriale Ontologie und strukturelle Exklusion}
-	Das System operiert mit vier fundamentalen epistemischen **Kategorien** ($\mathcal{C} = \{S, O, T, D\}$). Konkrete Instanzen bezeichnen wir mit Kleinbuchstaben: $s \in S$, $o \in O$, $t \in T$, $d \in D$.
+	\subsection{Kategoriale Ontologie und structural Exklusion}
+	Das System operiert mit drei fundamentalen epistemischen \textbf{Kategorien} ($\mathcal{C} = \{S, O, H\}$). Konkrete Instanzen bezeichnen wir mit Kleinbuchstaben: $s \in S$, $o \in O$, $h \in H$.
 	
 	\begin{table}[ht]
 		\centering
@@ -73,18 +72,20 @@
 			\midrule
 			\textbf{Source} & $S$ & Uninterpretiertes Rohmaterial (z. B. Primärtexte, unstrukturierte Daten). Quellen besitzen im System keine inhärente Bedeutung. \\
 			\addlinespace
-			\textbf{Observation} & $O$ & Eine interpretierte Selektion. Jede Beobachtung ist theoriegeladen; eine interpretationsfreie Wahrnehmung existiert nicht. \\
+			\textbf{Observation} & $O$ & Eine interpretierte Selektion. Jede Beobachtung ist hypothesengeladen; eine interpretationsfreie Wahrnehmung existiert nicht. \\
 			\addlinespace
-			\textbf{Theory} & $T$ & Ein stabilisiertes Interpretationsmodell. Theorien sind Mengen von strukturierenden Aussagen. \textbf{Axiome ($A$)} bilden keine separate Klasse, sondern sind als unveränderliche Elemente eine Teilmenge der Theorie ($A \subseteq T$, mutable = false). \\
-			\addlinespace
-			\textbf{Discourse} & $D$ & Der Zustand der expliziten Inkohärenz oder Spannung. Diskurse repräsentieren strukturelle Unvereinbarkeiten. Unlösbare Diskurse bezüglich einer gegebenen Menge $S$ bilden dabei die Teilmenge der \textbf{Unresolvables ($U$)} ($U \subseteq D$). \\
+			\textbf{Hypothesis} & $H$ & Ein interpretatives Modell oder eine strukturierende Aussage. Jeder Hypothese wird ein reellwertiges Validitätsmaß $v(h) \in [0, 1]$ zugewiesen. \\
 			\bottomrule
 		\end{tabular}
-		\caption{Die vier fundamentalen epistemischen Kategorien in TrigBiPy.}
+		\caption{Die drei fundamentalen epistemischen Kategorien in TrigBiPy.}
 	\end{table}
 	
-	\textbf{Exklusion statischer Forschungsprodukte:} Traditionelle Endpunkte, wie man sie oft aus dem Personal Knowledge Management (PKM) als finale Forschungsprodukte oder Ergebnisse kennt, werden in TrigBiPy vollständig aus der formalen epistemischen Grammatik ausgeschlossen. Das fertige Forschungsprodukt ist in diesem Paradigma streng von der eigentlichen, iterativen Erkenntnisgewinnung zu trennen. Das System verlangt eine rein bipartite Enddynamik zwischen Theorie ($T$) und Diskurs ($D$). Finale Resultate sind lediglich kommunikative Export-Artefakte, die selbst keinen strukturellen Erkenntnisüberschuss mehr innerhalb der Systemalgebra generieren. Sie stellen demnach keine zulässige epistemische Kategorie für morphologische Operationen dar.
-
+	Die Architektur etabliert eine universelle Kategorie der Hypothese ($H$). Eine klassische „Theorie“ lässt sich darin als eine Hypothese mit hohem epistemischen Wert ($v(h) \to 1$) beschreiben, während ein offenes wissenschaftliches Spannungsfeld (ein Diskurs) als ein Zustand manifestiert ist, in dem konkurrierende, sich gegenseitig ausschließende Hypothesen unentschiedene Werte aufweisen ($v(h_1) \approx v(h_2) \approx 0.5$).
+	
+	\textbf{Axiome ($A$)} bilden keine separate Klasse, sondern sind als unveränderliche Elemente eine Teilmenge der Hypothesen ($A \subseteq H$), für die permanent ein fixer, maximaler Wert definiert ist ($v(a) = 1$, mutable = false).
+	
+	\textbf{Exklusion statischer Forschungsprodukte:} Traditionelle Endpunkte, wie man sie aus dem Personal Knowledge Management (PKM) als finale Forschungsprodukte kennt, werden in TrigBiPy vollständig aus der formalen epistemischen Grammatik ausgeschlossen. Das fertige Forschungsprodukt ist streng von der eigentlichen, iterativen Erkenntnisgewinnung zu trennen. Das System verlangt eine reine Dynamik innerhalb des Hypothesenraums ($H$). Finale Resultate sind lediglich kommunikative Export-Artefakte, die selbst keinen strukturellen Erkenntnisüberschuss mehr innerhalb der Systemalgebra generieren.
+	
 	\subsection{Die Invarianten der epistemischen Grammatik}
 	\begin{itemize}
 		\item \textbf{Gesetz der Unerschaffbarkeit}: Eine Quelle ($s \in S$) kann niemals das Produkt einer Systemoperation sein.
@@ -92,152 +93,165 @@
 		\item \textbf{Gesetz der binären Reduktion und Kommutativität}: Die Reihenfolge der Operanden verändert den epistemischen Endzustand nicht. Alle komplexen Übergänge sind auf primitive binäre Operatoren reduzierbar.
 	\end{itemize}
 	
-	\subsection{Der Abbildungsraum und die Bifurkationsmatrix}
-	Wir formalisieren den Möglichkeitsraum der Erkenntnisgewinnung. Sei $\mathcal{C} = \{S, O, T, D\}$ die Menge der epistemischen Kategorien.
+	\subsection{Der Abbildungsraum und die Validitätsmatrix}
+	Wir formalisieren den Möglichkeitsraum der Erkenntnisgewinnung. Sei $\mathcal{C} = \{S, O, H\}$ die Menge der epistemischen Kategorien.
 	
 	\begin{definition}[Epistemischer Möglichkeitsraum]
 		Sei $\pi: \mathcal{C} \times \mathcal{C} \to \mathcal{P}(\mathcal{C})$ die Abbildungsfunktion des epistemischen Möglichkeitsraums, welche jedem Paar von Kategorien eine Teilmenge zulässiger Folgekategorien zuordnet.
 	\end{definition}
 	
-	Die zulässigen Projektionen des Möglichkeitsraums lassen sich für die geordnete Basis $(S, O, T, D)$ in folgender symmetrischer Matrixdarstellung $M_\pi$ abbilden:
+	Die zulässigen Projektionen des Möglichkeitsraums lassen sich für die geordnete Basis $(S, O, H)$ in folgender symmetrischer Matrixdarstellung $M_\pi$ abbilden:
 	
 	\[
 	M_\pi = \begin{pmatrix}
-		\emptyset & \emptyset & \{O\} & \{O\} \\
-		\emptyset & \{D, T\} & \{D, T\} & \{D, T\} \\
-		\{O\} & \{D, T\} & \{D, T\} & \{D, T\} \\
-		\{O\} & \{D, T\} & \{D, T\} & \{D, T\}
+		\emptyset & \{O\} & \{O\} \\
+		\{O\} & \{H\} & \{H\} \\
+		\{O\} & \{H\} & \{H\}
 	\end{pmatrix}
 	\]
 	
-	Die Matrix $M_\pi$ offenbart das formale Kernstück der TrigBiPy-Architektur: Abseits der initialen theorie- oder diskursgeladenen Datenextraktion ($S \times T \to O$ und $S \times D \to O$) mündet jede Verknüpfung im System zwingend in einer Dualität aus Diskurs ($D$) oder Theorie ($T$). Diese \emph{strukturelle Bifurkation} ist kein Mangel an Systempräzision, sondern die mathematische Modellierung menschlicher Kognition. 
-	
-	Bei der algebraischen Kollision zweier Informationsknoten $x, y \in \mathcal{C}$ muss der Linter stets zwei formale Endzustände $z \in \pi(x, y)$ vorhalten:
+	Die Matrix $M_\pi$ offenbart die formale und operationelle Konsistenz der Systemgrammatik. Sie erzwingt eine strikte Kaskade im Erkenntnisprozess: 
 	\begin{itemize}
-		\item \textbf{Synthese ($z \in T$)}: Formalisiert als $x \land y \vdash_{A} \top$. Die Informationen verifizieren sich logisch widerspruchsfrei unter den bestehenden Axiomen $A$. Die epistemische Spannung entlädt sich, und das Interpretationsmodell wird stabilisiert.
-		\item \textbf{Anomalie ($z \in D$)}: Formalisiert als $x \land y \vdash_{A} \bot$. Die Informationen erzeugen einen Widerspruch und somit eine strukturelle Inkohärenz. Das System generiert eine logische Reibung, die nicht gelöscht werden darf, sondern solange als eigener Knoten ($D$) bestehen bleibt, bis eine Axiom-Modifikation oder ein neuer theoretischer Pfad den Konflikt auflöst.
+		\item Die Interaktion von Rohmaterial mit einer interpretativen Instanz ($S \times O$ und $S \times H$) ist der fundamentale Katalysator, der zwingend neue, hypothesengeladene Beobachtungen ($\{O\}$) generiert. Reine Datenquellen ($S$) bleiben isoliert ($S \times S \to \emptyset$) und können ohne empirischen oder theoretischen Kontext keine epistemischen Übergänge triggern.
+		\item Sobald die Ebene der Beobachtung ($O$) oder der Hypothese ($H$) involviert ist, mündet jede weitere algebraische Kollision ($O \times O$, $O \times H$, $H \times H$) unweigerlich in der Evolution und Verfeinerung des kontinuierlichen Hypothesenraums ($\{H\}$).
 	\end{itemize}
-	Die zwingende Existenz beider Endzustände schützt den Erkenntnisgraphen formell vor degenerierten Systemzuständen: Ein Linter, der algebraisch ausschließlich $T$ zuließe, würde Widersprüche systemisch ignorieren (Dogmatismus). Ein Linter, der ausschließlich $D$ zuließe, verhinderte jegliche Attraktorenbildung (Skeptizismus).
+	Bei jeder Verknüpfung zweier Informationsknoten $x, y \in \mathcal{C}$ evaluiert der Linter die zulässigen Zielkategorien $z \in \pi(x, y)$ und berechnet das resultierende logische Spannungsverhältnis über die kontinuierliche Bewertungsfunktion $v(z)$.
+	
+	\subsection{Makro-Ontologien und rekursive Referenzierung}
+	Zur Reduktion topologischer Komplexität in ausgedehnten Graphenstrukturen führt die Architektur eine strukturelle Meta-Ebene ein. Sei $\mathcal{M}$ die Menge der \emph{Makro-Hypothesen} (Theorie-Cluster). Eine ontologische Projektionsfunktion $\phi: \mathcal{M} \to \mathcal{P}(H)$ aggregiert eine frei definierbare Menge von Elementarhypothesen zu einer benannten, referenzierbaren Einheit.
+	
+	Eine Makro-Hypothese $m \in \mathcal{M}$ verhält sich im Abbildungsraum $\pi$ syntaktisch wie eine singuläre Elementarhypothese und kann folglich als Prämisse oder Zielknoten in Verknüpfungen eingesetzt werden. Ihre aggregierte System-Validität $v(m)$ berechnet sich als das Produkt ihrer Kernkomponenten:
+	\[
+	v(m) = \prod_{h \in \phi(m)} v(h)
+	\]
+	Sinkt die Validität auch nur einer fundamentalen Komponente innerhalb des Clusters gegen Null, kollabiert die makro-ontologische Repräsentanz mathematisch im Gesamtsystem.
 	
 	\section{Dynamik der Erkenntnis}
-
+	
 	\subsection{Epistemische Kardinalität}
-
-	Um die Kardinalität einer Verknüpfung zu definieren, ohne den primären epistemischen Formalismus des Systems zu überladen, betrachten wir an dieser Stelle lokal den Raum aller theoretisch potenziell erschaffbaren Ausdrücke.
-
+	Um die Kardinalität einer Verknüpfung zu definieren, betrachten wir lokal den Raum aller theoretisch potenziell erschaffbaren Ausdrücke.
+	
 	\begin{definition}[Raum potenzieller Artefakte]
-		Sei $\mathbb{W}_{\text{pot}}$ eine exklusiv für diese Metrik definierte unendliche Menge aller sprachlich oder formallogisch konstruierbaren Artefakte.
+		Sei $\mathbb{W}_{\text{pot}}$ eine unendliche Menge aller sprachlich oder formallogisch konstruierbaren Artefakte.
 	\end{definition}
-
+	
 	\begin{definition}[Lokale Typisierung]
-		Wir definieren eine Typisierungsfunktion $\mu_{\text{cat}}: \mathbb{W}_{\text{pot}} \to \mathcal{C}$, die einem potenziellen Artefakt eine der vier Kategorien aus $\mathcal{C} = \{S, O, T, D\}$ zuweist.
+		Wir definieren eine Typisierungsfunktion $\mu_{\text{cat}}: \mathbb{W}_{\text{pot}} \to \mathcal{C}$, die einem potenziellen Artefakt eine der drei Kategorien aus $\mathcal{C} = \{S, O, H\}$ zuweist.
 	\end{definition}
-
-	Wenn wir nun zwei Artefakte verknüpfen, generiert der menschliche Verstand (oder ein Algorithmus) völlig neue Elemente in $\mathbb{W}_{\text{pot}}$.
-
+	
+	Wenn wir nun zwei Artefakte verknüpfen, generiert das System neue Elemente in $\mathbb{W}_{\text{pot}}$.
+	
 	\begin{definition}[Semantischer Generierungsraum]
 		Sei $\Gamma_{\text{gen}}: \mathbb{W}_{\text{pot}} \times \mathbb{W}_{\text{pot}} \to \mathcal{P}(\mathbb{W}_{\text{pot}})$ eine generative Funktion, die aus zwei Ursprungsartefakten $a, b \in \mathbb{W}_{\text{pot}}$ eine Menge von inhaltlich plausiblen Folgeartefakten generiert.
 	\end{definition}
-
-	Ein generiertes Artefakt $c \in \Gamma_{\text{gen}}(a,b)$ ist zunächst reine Prosa. Es wird erst dann zu einem validen Erkenntnisschritt, wenn die Kategorie, die wir ihm zuweisen ($\mu_{\text{cat}}(c)$), syntaktisch durch die Grammatik ($\pi$) erlaubt ist.
-
+	
+	Ein generiertes Artefakt $c \in \Gamma_{\text{gen}}(a,b)$ wird erst dann zu einem validen Erkenntnisschritt, wenn die zugewiesene Kategorie ($\mu_{\text{cat}}(c)$) syntaktisch durch die Grammatik ($\pi$) erlaubt ist.
+	
 	\begin{definition}[Valide Ableitungsmenge]
 		Die lokal definierte Menge der syntaktisch legalen Folgeartefakte $\mathbb{V}_{\text{val}}$ ist:
 		\[
 		\mathbb{V}_{\text{val}}(a, b) := \{ c \in \Gamma_{\text{gen}}(a, b) \mid \mu_{\text{cat}}(c) \in \pi(\mu_{\text{cat}}(a), \mu_{\text{cat}}(b)) \}
 		\]
 	\end{definition}
-
-	Jetzt ist die Kardinalität wasserdicht definiert, da sie exakt misst, wie viele völlig neue, gültige Elemente in unsere Graph-Datenbank geschrieben werden könnten.
-
+	
 	\begin{definition}[Epistemische Kardinalität $\kappa$]
 		Die Kardinalität einer epistemischen Verknüpfung entspricht der Mächtigkeit der validen Ableitungsmenge:
 		\[
 		\kappa(a, b) := |\mathbb{V}_{\text{val}}(a, b)|
 		\]
 	\end{definition}
-
+	
 	\begin{itemize}
 		\item \textbf{Totale epistemische Blockade ($\kappa = 0$):}  
-		Sei $a \in \mathbb{W}_{\text{pot}}$ die Beobachtung ($\mu_{\text{cat}}(a) = O$) „Die Straße ist nass“ und $b \in \mathbb{W}_{\text{pot}}$ die Theorie ($\mu_{\text{cat}}(b) = T$) „Die Winkelsumme im Dreieck ist 180 Grad“. Die Generierungsfunktion liefert keine logisch plausiblen neuen Sätze: $\Gamma_{\text{gen}}(a,b) = \emptyset$. Folglich ist die Menge der validen Ableitungen leer: $\mathbb{V}_{\text{val}}(a,b) = \emptyset \implies \kappa = 0$. (System befindet sich in Stagnation).
+		Sei $a \in \mathbb{W}_{\text{pot}}$ die Beobachtung ($\mu_{\text{cat}}(a) = O$) „Die Straße ist nass“ und $b \in \mathbb{W}_{\text{pot}}$ die Hypothese ($\mu_{\text{cat}}(b) = H$) „Die Winkelsumme im Dreieck ist 180 Grad“. Die Generierungsfunktion liefert keine plausiblen Verknüpfungen: $\Gamma_{\text{gen}}(a,b) = \emptyset \implies \kappa = 0$. (Stagnation).
 		
 		\item \textbf{Eindeutige Synthese ($\kappa = 1$):}  
-		Sei $a$ die Beobachtung ($\mu_{\text{cat}}(a) = O$) „Es regnet“ und $b$ die Theorie ($\mu_{\text{cat}}(b) = T$) „Regen macht Straßen nass“. Die Generierungsfunktion erschafft genau einen neuen Satz $c =$ „Die Straße wird nass“. Wir weisen $c$ die Rolle einer Theorieerweiterung zu: $\mu_{\text{cat}}(c) = T$. Da $T \in \pi(O, T)$ erlaubt ist, gilt $\kappa = 1$. (Dies impliziert schnelle System-Konvergenz).
+		Sei $a$ die Beobachtung $O$ „Es regnet“ und $b$ die Hypothese $H$ „Regen macht Straßen nass“ ($v(b)=0.95$). Die Generierungsfunktion erschafft genau einen Folgesatz $c$ mit $\mu_{\text{cat}}(c) = H$, welcher der Aussage „Die Straße wird nass“ entspricht. Da $H \in \pi(O, H)$ erlaubt ist, gilt $\kappa = 1$. (Schnelle Konvergenz).
 		
 		\item \textbf{Endliche Ambiguität ($\kappa > 1$):}  
-		Die Funktion $\Gamma_{\text{gen}}$ erschafft aus einer Beobachtung und Theorie zwei widersprüchliche Folgeartefakte $c_1, c_2$ mit $\mu_{\text{cat}}(c_i) = T$. Weil beide in Konflikt stehen, erzwingt das System eine Abzweigung, und $\kappa = 2$. Dies triggert den Diskurs.
+		Aus einer Beobachtung und einer Hypothese entspringen zwei widersprüchliche Folgehypothesen $c_1, c_2$ ($\mu_{\text{cat}}(c_i) = H$). Da beide zulässig sind, ist $\kappa = 2$. Dies teilt die Gewissheit auf beide Pfade auf ($v(c_1) + v(c_2) \le 1$) und indiziert eine lokale Verzweigung.
 		
 		\item \textbf{Offene Ambiguität ($\kappa = \infty$):}  
-		Unter einer vagen Theorie ohne Restriktionen ist die Menge der plausiblen Sätze $\Gamma_{\text{gen}}(a,b)$ unendlich groß. Das System befindet sich in epistemischer Sättigung ($\kappa = \infty$) und erfordert zwingend axiomatische Einschränkungen.
+		Unter einer vagen, unterdefinierten Hypothese ist $\Gamma_{\text{gen}}(a,b)$ unendlich groß. Das System befindet sich in epistemischer Sättigung ($\kappa = \infty$) und erfordert axiomatische Einschränkungen ($v(a)=1$), um den Lösungsraum zu beschneiden.
 	\end{itemize}
-
-	Damit ist formal bewiesen, dass TrigBiPy nicht auf einer statischen Datenbank aufbaut. Das System lässt bei jedem Schritt eine Unendlichkeit an Prosa ($\mathbb{W}_{\text{pot}}$) zu, diszipliniert die Wissensbildung jedoch radikal durch den Schnitt aus semantischer Sinnhaftigkeit ($\Gamma_{\text{gen}}$) und strenger Grammatik ($\pi$).
+	
+	\subsection{Epistemische Partitionierung und exklusive Gruppen}
+	Um einander ausschließende Hypothesen formal zu handhaben, definiert das System eine Familie von \emph{epistemischen Partitionen} $\mathcal{G} \subset \mathcal{P}(H)$. Für jede exklusive Gruppe $G \in \mathcal{G}$ gilt das strikte logische Ausschlussprinzip:
+	\[
+	\forall h_i, h_j \in G \quad \text{mit} \quad i \neq j \implies h_i \land h_j \vdash_A \bot
+	\]
+	Systemisch wird die Erhaltung der Wahrscheinlichkeitsmasse über das \emph{Sättigungs-Axiom} erzwungen:
+	\[
+	\sum_{h \in G} v(h) = 1
+	\]
+	Um unvollständige oder im Diskurs befindliche Hypothesenräume mathematisch abzusichern, führt der Linter automatisch eine Residual-Hypothese $h_\emptyset \in G$ ein. Diese repräsentiert das „epistemische Vakuum“ (das unstrukturierte Unbekannte). Jede valide Wertänderung eines Elements innerhalb von $G$ induziert eine proportionale kompensatorische Verschiebung der verbleibenden Elemente, sodass die Summe stets normiert bleibt.
+	
+	\subsection{Die epistemische Inferenzmatrix und Prämisse-Propagation}
+	Die strukturelle und logische Abhängigkeit von Hypothesen untereinander wird über eine gerichtete Assoziationsmatrix $M_A$ der Dimension $|H| \times |H|$ kodiert. Ein Eintrag $M_A[i, j] = \omega \in [0, 1]$ definiert das Gewicht, zu dem die Validität der Hypothese $h_i$ auf der Prämisse aufbaut, dass $h_j$ wahr ist ($h_i \leftarrow h_j$).
+	
+	Zur Berechnung der Wertepropagation über verschachtelte Inferenzketten greift TrigBiPy auf die Gödel-T-Norm der Fuzzy-Logik zurück. Basiert eine komplexe Abstraktion $h_i$ auf einer Menge von Prämissen $\text{Dep}(i) \subseteq H$, so wird die obere Schranke ihrer Validität durch das schwächste Glied der logischen Kette determiniert:
+	\[
+	v(h_i) \le \min_{j \in \text{Dep}(i)} \{ v(h_j) \}
+	\]
+	Bricht eine fundamentale Basisannahme ein, so kollabiert der maximal zulässige Validitätskorridor aller darauf aufbauenden theoretischen Abstraktionen automatisch entlang des gerichteten Inferenzgraphen.
 	
 	\subsection{Der iterative Zyklus: Charakterisierung von Transitionen und Zuständen}
-	Um den iterativen Prozess formal zu fassen, muss zwingend zwischen den abstrakten Kategorien $\mathcal{C} = \{S, O, T, D\}$ und den tatsächlichen, zeitabhängigen Mengen der instanziierten Elemente im Systemgraphen unterschieden werden. Alle im System verarbeiteten Elemente sind Teilmengen des universellen Raums potenzieller Artefakte $\mathbb{W}_{\text{pot}}$.
+	Um den iterativen Prozess formal zu fassen, unterscheiden wir zwischen den abstrakten Kategorien $\mathcal{C}$ und den zeitabhängigen Mengen der instanziierten Elemente im Systemgraphen. Wir definieren das globale System zum diskreten Zeitpunkt $t$ als das Tupel der aktuell existierenden Teilmengen: $E_t = (\mathfrak{S}_t, \mathfrak{O}_t, \mathfrak{H}_t)$, wobei $\mathfrak{S}_t, \mathfrak{O}_t, \mathfrak{H}_t \subset \mathbb{W}_{\text{pot}}$ und für die Axiome gilt $A \subseteq \mathfrak{H}_t$ mit $v(a) = 1$.
 	
-	Wir definieren das globale System zum diskreten Zeitpunkt $t$ als das Tupel der aktuell existierenden, kategorienspezifischen Teilmengen: $E_t = (\mathfrak{S}_t, \mathfrak{O}_t, \mathfrak{T}_t, \mathfrak{D}_t)$, wobei $\mathfrak{S}_t, \mathfrak{O}_t, \mathfrak{T}_t, \mathfrak{D}_t \subset \mathbb{W}_{\text{pot}}$ und $\mathfrak{T}_t \neq \emptyset$ (da mindestens ein Axiom existieren muss). Die Epistemik operiert als zeitdiskretes dynamisches System $E_{t+1} = F(E_t)$.
-	Löschen von Knoten ist streng verboten (Wahrung der Historizität). Die Systemmengen wachsen demnach streng monoton: Für jede Kategorie $X \in \mathcal{C}$ und ihre zugehörige Menge $\mathfrak{X}_t$ gilt zwingend $\mathfrak{X}_{t+1} \supseteq \mathfrak{X}_t$. Anstelle einer Entitätslöschung bei Falsifikation generiert das System eine dynamische Angriffsrelation $\mathcal{R}_t \subseteq \mathbb{W}_{\text{pot}} \times \mathbb{W}_{\text{pot}}$ im Sinne eines Argumentationsframeworks nach Dung. Ein ungültiges Element verbleibt stets in seiner Menge, wird aber durch eine Kante $(a, b) \in \mathcal{R}_t$ (Argument $a$ greift Argument $b$ an) epistemisch inaktiviert.
+	Löschen von Knoten ist streng verboten (Wahrung der Historizität). Die Systemmengen wachsen streng monoton: $\mathfrak{X}_{t+1} \supseteq \mathfrak{X}_t$. Anstelle einer Entitätslöschung bei Falsifikation sinkt der zugewiesene Wert einer Hypothese gegen Null ($v(h) \to 0$). Zudem generiert das System eine dynamische Angriffsrelation $\mathcal{R}_t \subseteq \mathfrak{H}_t \times \mathfrak{H}_t$. Ein mathematischer Angriff verringert den Wert der angegriffenen Hypothese in Abhängigkeit vom Wert des Angreifers.
 	
-	Eine formale Operation $op(x, y) \to z$ projiziert zwei bestehende Elemente $x \in \mathfrak{X}_t, y \in \mathfrak{Y}_t$ (mit korrespondierenden Kategorien $X, Y \in \mathcal{C}$) auf ein Zielelement $z \in \mathbb{W}_{\text{pot}}$. Die Typisierung von $z$ wird durch die syntaktische Matrix auf eine Zielkategorie $Z \in \pi(X, Y)$ abgebildet ($\mu_{\text{cat}}(z) = Z$). Die dem Ziel $Z$ zugewiesene Menge definieren wir als $\mathfrak{Z}_t$. Die topologische Dynamik unterscheidet exakt zwischen zwei Ziel-Szenarien für die resultierende Menge $\mathfrak{Z}_{t+1}$:
-	\begin{itemize}
-		\item \textbf{Verknüpfung mit bestehendem Element:} Das Ziel ist ein bereits im Graphen instanziiertes Element $z \in \mathfrak{Z}_t$. Die Graphenmengen bleiben kardinal identisch ($\mathfrak{Z}_{t+1} = \mathfrak{Z}_t$), es wird lediglich eine neue topologische Kante gezogen.
-		\item \textbf{Erschaffung eines neuen Elements:} Die Operation generiert ein völlig neues Artefakt $z_{new} \in \mathbb{W}_{\text{pot}}$ mit $z_{new} \notin \mathfrak{Z}_t$. Das System integriert dieses Element, woraus ein explizites Mengenwachstum resultiert: $\mathfrak{Z}_{t+1} = \mathfrak{Z}_t \cup \{z_{new}\}$.
-	\end{itemize}
-	\begin{definition}[Durchführung der Operationen]
-	Die \emph{epistemische Entropie} $H_E$ des Systems wird als monoton steigende Funktion über die unlösbaren Inkohärenzen im Graphen definiert, $H_E \propto |\mathfrak{D}_t|$. Das System operiert deterministisch, indem es systematisch prüft, welche Operationen syntaktisch in $\mathcal{C}$ möglich sind. Aus dieser Menge werden iterativ jene Operationen isoliert, die semantisch sinnvoll sind. Diese validierten Operationen ($\mathcal{O}_{val}$) werden anschließend algorithmisch angewandt, mit dem expliziten Ziel der Entropie- und Inkohärenzminimierung. Mathematisch lässt sich dies als iterativer Optimierungsprozess fassen:
-	\[
-	op^* = \arg\min_{op \in \mathcal{O}_{val}} \Delta H_E(E_t \cup \{op\})
-	\]
-	Durch diese zielgerichtete Reorganisation erzwingt das System die Synthese neuer kohärenter Theorie-Elemente ($t_{new}$), wodurch die verbleibende Diskursmenge strukturell aufgelöst und die globale Entropie minimiert wird ($\frac{dH_E}{d\mathfrak{T}} < 0$).
+	\begin{definition}[Epistemische Entropie]
+		Die \emph{epistemische Entropie} $H_E$ des Systems misst die akkumulierte logische und probabilistische Spannung über allen zueinander im Widerspruch stehenden Hypothesenpaaren:
+		\[
+		H_E(E_t) := \sum_{\substack{h_i, h_j \in \mathfrak{H}_t \\ h_i \land h_j \vdash_{A} \bot}} v(h_i) \cdot v(h_j)
+		\]
+		Wenn zwei miteinander unvereinbare Hypothesen gleichzeitig eine hohe Gewissheit aufweisen, maximiert dies die Entropie. Das Ziel des kontinuierlichen Linters ist die Minimierung dieser systemischen Reibung (Inkohärenz) durch ein optimiertes Re-Evaluation-Verfahren:
+		\[
+		op^* = \arg\min_{op \in \mathcal{O}_{val}} \Delta H_E(E_t \cup \{op\})
+		\]
 	\end{definition}
 	
 	\subsection{Wissenschaftstheoretische Implikationen}
 	\begin{itemize}
 		\item \textbf{Epistemische Konvergenz und Attraktorstruktur:}
-		Wissenschaftliche Stabilisierung ist kein monotoner Akkumulationsprozess von Daten, sondern ein rekursiver Attraktorprozess im Raum der epistemischen Zustände. Unter der Annahme einer begrenzten Injektion fundamental neuer Quellen ($|S_{\text{neu}}| < \infty$) und einer endlichen Diskursgenerierung konvergiert das dynamische System:
-		\[
-		\lim_{t \to \infty} D_t \to \emptyset \implies \exists T^* : F(T^*) = T^*
-		\]
-		Theorien $T^*$ fungieren als \emph{Fixpunkte} (Attraktoren) im dynamischen Raum der Erkenntnis. Wissenschaftliche Stabilisierung ist formal die strukturelle Kompression von Beobachtungen und Diskursen in ein asymptotisches Interpretationsmodell $T^*$.
+		Wissenschaftliche Stabilisierung ist kein monotoner Akkumulationsprozess von Daten, sondern ein rekursiver Attraktorprozess im Raum der epistemischen Zustände. Unter der Annahme einer begrenzten Injektion fundamental neuer Quellen ($|S_{\text{neu}}| < \infty$) konvergiert das System gegen ein stabiles Hypothesennetzwerk, bei dem die Entropie minimiert wird ($H_E \to 0$). Erfolgreiche Kernhypothesen stabilisieren sich asymptotisch als Fixpunkte (Attraktoren) mit $v(h^*) \to 1$.
 		
 		\item \textbf{Korrektur der empiristischen Induktion:}
-		Diese mathematische Formulierung korrigiert eine klassische empiristische Fehlannahme der Wissenschaftstheorie: Neue Theorien ($t_{new} \in \mathfrak{T}_{t+1}$) entstehen nicht durch naive, direkte Induktion aus nackten Daten ($op(o_1, o_2) \to t_{new}$ ist strukturell unzureichend für einen Paradigmenwechsel), sondern zwingend durch die Auflösung formaler Spannungen. Wie historische Paradigmenwechsel (etwa der Übergang zur Relativitätstheorie) verdeutlichen, führt eine anomale Beobachtung $o_{new} \in \mathfrak{O}_t$ nicht isoliert zu einem neuen Paradigma. Vielmehr kollidiert $o_{new}$ zwingend mit dem bestehenden Modell $t_{alt} \in \mathfrak{T}_t$ und erzeugt durch die Verknüpfung formal einen Diskursknoten $op(o_{new}, t_{alt}) \to d_{new} \in \mathfrak{D}_{t+1}$. Erst aus diesem spannungsgeladenen Diskursraum geht unter den strukturellen Limits der Axiomatik ($a \in A \subseteq \mathfrak{T}$) die neue Theorie hervor ($op(d_{new}, a) \to t_{new}$). Das Element $t_{new}$ etabliert anschließend einen logischen Angriff $(t_{new}, t_{alt}) \in \mathcal{R}_{t+n}$.
+		Dieser Ansatz korregiert die klassische empiristische Fehlannahme: Neue Erkenntnisse entstehen nicht durch naive Induktion aus reinen Daten, sondern zwingend durch das Auflösen bestehender Spannungsfelder im kontinuierlichen Raum. Kollidiert eine anomale Beobachtung $o_{\text{new}}$ mit einer etablierten Hypothese $h_{\text{alt}}$ ($v(h_{\text{alt}}) \approx 1$), entsteht ein lokales Entropiemaximum, da $h_{\text{alt}} \land o_{\text{new}} \vdash_A \bot$. Erst die Synthese einer übergeordneten Alternativhypothese $h_{\text{neu}}$, welche die Anomalie integriert und einen validen informationstheoretischen Angriff auf $h_{\text{alt}}$ reitet, senkt die globale Entropie, indem sie den Wert der alten Hypothese devaluiert ($v(h_{\text{alt}}) \to 0$).
 		
 		\item \textbf{Inkohärenz als primäre Ressource:}
-		Erkenntnis ist somit keine Wahrscheinlichkeitsmodellierung (wie es statistische LLMs simulieren) und auch keine reine Suchabfrage in Wissensgraphen (PKM). Es ist ein \emph{constraint-basiertes Rewriting-System}, dessen primäre Berechnungsressource die Inkohärenz ist. Inkohärenz ($D$) ist kein "Fehler" im System, sondern das essenzielle Signal, das neue theoretische Stabilisierungen überhaupt erst erzwingt. Das TrigBiPy-System optimiert folglich nicht primär auf unmessbare absolute Wahrheiten, sondern minimiert als formale Zustandsmaschine iterativ epistemische Inkonsistenzen.
+		Erkenntnis ist somit keine statische Suchabfrage in Wissensgraphen (PKM) und keine rein statistische Korrelationsanalyse (wie bei klassischen LLMs). Es ist ein \emph{constraint-basiertes Rewriting-System}, dessen primäre Berechnungsressource die logische Spannung (Inkohärenz) und die daraus resultierenden Gradienten zwischen Hypothesen ist. Widersprüche sind keine Systemfehler, sondern treibende Kräfte, die eine kontinuierliche Anpassung der epistemischen Gewissheiten erzwingen.
 	\end{itemize}
 	
-	\subsection{Diskurs-Sättigung und Folgen}
-	
-	Wir greifen die eingangs definierte Teilmenge der unlösbaren Diskurse auf, formalisiert als $\mathfrak{U}_t \subseteq \mathfrak{D}_t$. Es stellt sich die systemische Frage, ob das dynamische System $F(E_t)$ bei einer beliebigen, aber fixierten Quellenmenge $\mathfrak{S}_t = const$ zwingend in einen vollständig kohärenten Attraktorraum konvergiert, sodass $\lim_{k \to \infty} \mathfrak{U}_{t+k} = \emptyset$.
+	\subsection{Hypothesen-Sättigung und Symmetriebrechung}
+	Es stellt sich die Frage, ob das System bei einer fixierten Quellenmenge $\mathfrak{S}_t = \text{const} $ zwingend in einen vollständig eindeutigen Attraktorraum konvergiert.
 	
 	\begin{theorem}[Epistemische Stagnation]
-		Für eine statische Quellenmenge $\mathfrak{S}_t \neq \emptyset$ existiert nicht notwendigerweise ein Fixpunkt mit $\mathfrak{U}^* = \emptyset$. Wenn für die Menge aller zulässigen Folgeoperationen über $E_t$ gilt, dass kein neues theoriebildendes Element $t_{new} \in \mathfrak{T}_{t+1}$ synthetisiert werden kann, welches einen validen Angriff $(t_{new}, u) \in \mathcal{R}_{t+1}$ auf die unlösbaren Diskurse generiert, konvergiert das System in eine Stagnation. Die Teilmenge der unlösbaren Diskurse wird invariant: $\mathfrak{U}_{t+1} = \mathfrak{U}_t \neq \emptyset$.
+		Für eine statische Quellenmenge existiert nicht notwendigerweise ein Fixpunkt mit $H_E = 0$. Wenn für konkurrierende Hypothesen $h_1, h_2 \in \mathfrak{H}_t$ mit $h_1 \land h_2 \vdash_A \bot$ keine operationelle Transformation existiert, die die Symmetrie bricht, konvergiert das System in ein unaufgelöstes Gleichgewicht:
+		\[
+		v(h_1) \approx v(h_2) \approx 0.5 \implies H_E = \text{const} > 0
+		\]
 	\end{theorem}
 	
-	In der realen Wissenschaftsgeschichte manifestiert sich dieser Zustand als permanente Koexistenz unvereinbarer Theorien, die empirisch unterdeterminiert sind. Verschiedene Elemente $t_1, t_2 \in \mathfrak{T}_t$ leiten sich widerspruchsfrei aus derselben Beobachtungsmenge $\mathfrak{O}_t$ ab. Da jedoch keines der Elemente stark genug ist, um das andere erfolgreich anzugreifen ($(t_1, t_2) \notin \mathcal{R}_t$ und $(t_2, t_1) \notin \mathcal{R}_t$), erzeugen sie in ihrer gegenseitigen Verknüpfung zwingend ein unlösbares Knotenelement $op(t_1, t_2) \to u \in \mathfrak{U}_t$. Ein prominentes physikalisches Beispiel ist die Quantenmechanik: Verschiedene Interpretationen (etwa Kopenhagener Deutung vs. Viele-Welten-Theorie) operieren erfolgreich auf der exakt gleichen Quellbasis $\mathfrak{S}_t$, verbleiben jedoch systemisch in einem unauflösbaren Spannungsverhältnis.
+	In der Wissenschaftsgeschichte manifestiert sich dies als permanente Koexistenz unterdeterminierter Theorien, wie etwa den konkurrierenden Interpretationen der Quantenmechanik (Kopenhagener Deutung vs. Viele-Welten-Theorie), die auf derselben Quellenbasis operieren und systemisch in einem unauflösbaren Spannungsverhältnis verharren.
 	
 	\begin{theorem}[Symmetriebrechung und kaskadierender Kollaps]
-		Sei $E_t$ ein System in Sättigung ($\mathfrak{U}_t = const > 0$). Wird nun ein fundamentales Element in die Quellenmenge injiziert, sodass $\mathfrak{S}_{t+1} = \mathfrak{S}_t \cup \{s_{new}\}$, resultiert daraus iterativ eine neue Beobachtung $o_{new} \in \mathfrak{O}_{t+2}$. Kollidiert $o_{new}$ asymmetrisch mit den bestehenden Theorien (z. B. $op(o_{new}, t_1) \to d_{new}$ und $op(o_{new}, t_2) \to t_{new}$), bricht die formale Symmetrie der Unterdeterminierung. Das neue Element $t_{new}$ formt nun einen validen Angriff $(t_{new}, t_1) \in \mathcal{R}_{t+n}$.
+		Sei $E_t$ ein System im Zustand der Stagnation ($H_E > 0$). Wird ein neues imperatives Element in die Quellenmenge injiziert ($\mathfrak{S}_{t+1} = \mathfrak{S}_t \cup \{s_{\text{new}}\}$), resultiert daraus eine neue Beobachtung $o_{\text{new}} \in \mathfrak{O}_{t+2}$. Kollidiert $o_{\text{new}}$ asymmetrisch mit den Hypothesen (z. B. stützt sie $h_2$, steht aber im harten logischen Widerspruch zu $h_1$), bricht die mathematische Symmetrie. Der Wert von $h_1$ bricht abrupt zusammen ($v(h_1) \to 0$), während $v(h_2) \to 1$ strebt.
 	\end{theorem}
 	
-	Die Injektion von $s_{new}$ wirkt als Katalysator: Zuvor inkompatible Elemente aus $\mathfrak{U}_t$ werden durch die asymmetrische Schwächung von $t_1$ (Invalidierung durch die Angriffsrelation) zugunsten von $t_2$ abrupt auflösbar. Diese plötzliche algebraische Resolution einer zuvor saturierten Diskursmenge beschreibt formell den Prozess, der wissenschaftshistorisch als revolutionärer Paradigmenwechsel bekannt ist: Ein schlagartiger topologischer Graphenkollaps und der plötzliche Wechsel ganzer Theorienkonstrukte.
+	Diese schlagartige algebraische Resolution beschreibt formell den Prozess, der wissenschaftshistorisch als revolutionärer Paradigmenwechsel bekannt ist: Ein plötzlicher topologischer Graphenkollaps und die rapide Umverteilung des epistemischen Gewichts über das gesamte Hypothesenkonstrukt.
 	
 	\subsection{Kategorientheoretische Formalisierung und Attraktoren}
-	Um die strukturellen Eigenschaften der Wissensdynamik ($\Delta H_E$) formell exakt zu fassen, modellieren wir TrigBiPy als streng typisierte Kategorie $\mathcal{E}$, innerhalb derer Erkenntnis als iterativer Konvergenzprozess durch epistemische Endofunktoren abgebildet wird. Dies erlaubt es uns, abstrakte Transformationen rigoros nachzuweisen und semantische Konsistenz strukturell zu erzwingen.
+	Um die strukturellen Eigenschaften der Wissensdynamik formell exakt zu fassen, modellieren wir TrigBiPy als eine gewichtete Kategorie $\mathcal{E}$, innerhalb derer Erkenntnis als iterativer Konvergenzprozess durch epistemische Endofunktoren abgebildet wird.
 	
-	\textbf{Definition der Kategorie $\mathcal{E}$:}
 	\begin{itemize}
-		\item \textbf{Objekte ($Ob(\mathcal{E})$):} Die fundamentalen Kategorien $\mathcal{C} = \{S, O, T, D\}$ fungieren nicht bloß als lose Datentypen, sondern als formale Objekte im kategorientheoretischen Sinne. Eine spezifische Instanziierung des Systemgraphen zu einem Zeitpunkt $t$ ist ein konkretes Morphismennetzwerk zwischen diesen Objekten.
-		\item \textbf{Morphismen ($Hom(X, Y)$):} Jeder bewusste Erkenntnisschritt (z. B. eine Beobachtung aus einer Quelle generieren, oder zwei Theorien in einen Diskurs überführen) entspricht einem Morphismus. Die epistemische Matrix $M_\pi$ definiert dabei die Menge aller legalen strukturellen Übergänge in $\mathcal{E}$.
+		\item \textbf{Objekte ($Ob(\mathcal{E})$):} Die fundamentalen Kategorien $\mathcal{C} = \{S, O, H\}$ fungieren als formale Objekte im kategorientheoretischen Sinne. Eine spezifische Instanziierung des Systemgraphen zu einem Zeitpunkt $t$ ist ein Morphismennetzwerk zwischen diesen Objekten.
+		\item \textbf{Morphismen ($Hom(X, Y)$):} Jeder bewusste Erkenntnisschritt entspricht einem Morphismus. Die epistemische Matrix $M_\pi$ definiert dabei die Menge aller legalen strukturellen Übergänge in $\mathcal{E}$.
 	\end{itemize}
 	
-	\textbf{Der Diskurs als Pullback-Obstruction:}
-	Die formelle Eleganz der kategorientheoretischen Betrachtung offenbart sich in der Definition der Diskursknoten ($D$). Wenn zwei getrennte theoriegeladene Beobachtungen $o_1$ und $o_2$ im Erkenntnisprozess nicht widerspruchsfrei unter einem gemeinsamen theoriebildenden Pullback-Objekt $t$ vereint werden können, kommutiert das entsprechende Diagramm nicht. 
+	\textbf{Der unvollständige Pullback als algebraische Krümmung:}
+	Wenn zwei getrennte hypothesengeladene Beobachtungen $o_1$ und $o_2$ im Erkenntnisprozess nicht widerspruchsfrei unter einem gemeinsamen Objekt vereint werden können, kommutiert das entsprechende Diagramm nicht. Das Scheitern der universellen Pullback-Eigenschaft drückt sich direkt im Hypothesenraum aus: Die Unvereinbarkeit erzeugt zwei konkurrierende Knoten $h_1, h_2$, deren Überlappung ein direktes Maß für die \emph{epistemische Krümmung} des Raumes darstellt. Die Krümmung ist hierbei direkt proportional zur Systementropie $H_E$. Der mathematische Linter zwingt das System formell dazu, den globalen Graphen solange algebraisch umzuformen, bis die Krümmung minimiert und die kategoriale Kommutativität näherungsweise wiederhergestellt ist.
 	
-	In traditionellen Systemen (wie simplen Wissensgraphen) würde diese Inkompatibilität schlicht ignoriert oder gelöscht. In TrigBiPy jedoch materialisiert sich das Scheitern der Kommutativität (die "Pullback Obstruction") als eigenständiges formales Objekt: der Diskurs $D$. Ein Diskurs ist somit keine Fehlerstelle in der Datenbank, sondern das strukturelle Maß eines Nicht-Null-Wertes der \emph{epistemischen Krümmung}. Er zwingt das System formell dazu, den globalen Graphen solange algebraisch umzuformen (durch die Synthese neuer, höherer Theorien), bis die Krümmung aufgelöst und Kommutativität wiederhergestellt ist.
-
 	\section{Angewandte Implementierung und Knowledge-as-Code}
 	
 	\lstset{
@@ -251,30 +265,27 @@
 		extendedchars=true,
 		inputencoding=utf8/latin1
 	}
-
+	
 	\subsection{Proof of Concept: Minimum Viable Product}
 	
 	\lstinputlisting{trigbipy_mvp.py}
-
-	\subsection{Algorithmische Validierung und Knowledge-as-Code}
-	Das formale Gerüst von TrigBiPy erlaubt eine direkte algorithmische Implementierung nach dem \emph{Knowledge-as-Code}-Paradigma. Der Graph wird als lokales Dateisystem realisiert (Ordner für Sources, Observations, Theories und Discourses, die als Markdown-Dateien vorliegen). Git dient hierbei als native Infrastruktur: Eine Theorie entspricht einem Branch, ein Diskurs äußert sich als Merge Conflict, und Falsifikation ist ein Revert.
 	
-	Da das System rein strukturell agiert, lässt sich die epistemische Konsistenz deterministisch überprüfen. Die konkrete Validierung der Architektur ist derzeit strukturell algorithmisch möglich:
+	\subsection{Algorithmische Validierung und Knowledge-as-Code}
+	Das formale Gerüst von TrigBiPy erlaubt eine direkte algorithmische Implementierung nach dem \emph{Knowledge-as-Code}-Paradigma. Der Graph wird als lokales Dateisystem realisiert (Ordner für Sources, Observations und Hypotheses, vorliegend als Markdown-Dateien mit standardisierten YAML-Metadaten für die Gewissheitswerte $v$). Git dient hierbei als native Infrastruktur: Eine Denkschule entspricht einem Branch, eine logische Spannung äußert sich als Merge Conflict, und die Entwertung einer falsifizierten Annahme ist ein Revert.
+	
+	Die konkrete Validierung der Architektur ist über verschiedene computationale Ansätze möglich:
 	\begin{itemize}
-		\item \textbf{Domänenspezifische Algorithmen:} Diese beruhen auf impliziten Axiomen. Bspw. können Simulationen die Sinnhaftigkeit von Operationen prüfen.
-		\item \textbf{SAT-Solver:} Prüfung auf logische Widersprüche innerhalb der Constraints (Konsistenz von $T \equiv SAT(C_T)$).
-		\item \textbf{Logic Programming (Prolog):} Resolution der Graphenkanten und Inferenzketten.
-		\item \textbf{Dependent Type Systems (Lean):} Eine Theorie fungiert als Typ, eine Beobachtung als Term und ein Diskurs als Type Mismatch.
-		\item \textbf{LLM-Ansätze:} Large Language Models werden rein heuristisch zur Überprüfung der inhaltlichen Kohärenz des Fließtextes verwendet, ohne jedoch epistemische Autorität zu besitzen.
+		\item \textbf{Probabilistische Logikprogrammierung (z.B. ProbLog):} Zur Resolution der Graphenkanten und Inferenzketten unter Berücksichtigung der kontinuierlichen Validitätswerte $v(h)$.
+		\item \textbf{SAT-Solver / MaxSAT:} Prüfung auf logische Widersprüche innerhalb der harten Constraints und Axiome sowie Bestimmung der maximal konsistenten Teilmenge an Hypothesen.
+		\item \textbf{Abhängige Typsysteme (Dependent Type Systems):} Abbildung von Hypothesen als Typen, wobei der kontinuierliche Wert $v$ über ein metrisches Beweis-Gewichtungssystem validiert wird.
+		\item \textbf{LLM-Ansätze:} Large Language Models werden rein heuristisch zur Extraktion und Formulierung von Hypothesen-Kandidaten aus den Rohquellen verwendet, besitzen jedoch keinerlei epistemische Autorität.
 	\end{itemize}
 	
 	\subsection{TrigBiPy als Framework für AGI}
-	Das aktuelle Paradigma der Künstlichen Intelligenz (primär LLMs) basiert auf der probabilistischen Vorhersage des nächsten Tokens. Diese Systeme scheitern an echter Erkenntnisgewinnung.
+	Das aktuelle Paradigma der Künstlichen Intelligenz (primär LLMs) basiert auf der probabilistischen Vorhersage des nächsten Tokens auf rein oberflächlicher semantischer Ebene. Diese Systeme scheitern an echter, tiefer Erkenntnisgewinnung.
 	
-	TrigBiPy bietet hier einen völlig neuen Lösungsansatz. Kleine, lokale LLMs dienen lediglich als Übersetzer und heuristische Vorschlagsgeneratoren für die Operationen der epistemischen Grammatik. Der Compiler prüft Dung-Angriffsrelationen, Kardinalität und Typensicherheit.
+	TrigBiPy bietet hier einen völlig neuen Lösungsansatz. Kleine, lokale LLMs dienen lediglich als intuitive Übersetzer und heuristische Vorschlagsgeneratoren für die Operationen der epistemischen Grammatik. Der harte Compiler prüft die mathematischen Angriffsrelationen, berechnet die epistemische Entropie $H_E$ und erzwingt Typensicherheit.
 	
-	\textbf{Incoherence is all you need.} Inkohärenz ist der Motor der Erkenntnis. Git dient als Infrastruktur: Hypothesen als Branches, Diskurse als Merge Conflicts, und Erkenntnisiterationen als deterministische Commits in der Knowledge-as-Code-Architektur.
-	
-	In einer hybriden AGI-Architektur übernimmt das neuronale Netz die Intuition (Vorschläge für Kanten), während der TrigBiPy-Graph die harte Logik erzwingt. Halluzinationen werden zu produktiven Diskursen, die das System zur Auflösung zwingt.
+	\textbf{Incoherence is all you need.} Inkohärenz ist der Motor der Erkenntnis. In einer hybriden AGI-Architektur übernimmt das neuronale Netz die Intuition (Vorschläge für Kanten und neue Hypothesen), während der TrigBiPy-Graph die harte logische Konsistenz und die algebraische Optimierung des Hypothesenraums erzwingt. Halluzinationen werden somit zu produktiven Hypothesen-Vorschlägen (strukturellen Inkohärenzen) degradiert, die das System im Zuge der Entropieminimierung automatisch evaluiert, gewichtet oder devaluiert.
 	
 \end{document}
