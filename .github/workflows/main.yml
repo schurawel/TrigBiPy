@@ -1,9 +1,12 @@
-name: Build LaTeX PDF
+name: Build LaTeX PDF & Create Release
 
 on:
   push:
     branches:
       - main  # Oder dein Hauptzweig (z. B. master)
+
+permissions:
+  contents: write  # ZWINGEND ERFORDERLICH, damit die Action ein Release erstellen darf
 
 jobs:
   build:
@@ -18,8 +21,16 @@ jobs:
           root_file: paper.tex
           args: -pdf -interaction=nonstopmode -halt-on-error
 
-      - name: Upload PDF
-        uses: actions/upload-artifact@v4
+      # Schritt 1: PDF in den gewünschten Namen umbenennen
+      - name: Rename PDF file
+        run: mv paper.pdf incoherence_is_all_you_need.pdf
+
+      # Schritt 2: Das GitHub Release erstellen und die Datei anhängen
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
         with:
-          name: paper-pdf
-          path: paper.pdf
+          tag_name: v${{ github.run_number }}
+          name: Release v${{ github.run_number }}
+          draft: false
+          prerelease: false
+          files: incoherence_is_all_you_need.pdf
