@@ -273,12 +273,14 @@
 	\subsection{Algorithmische Validierung und Knowledge-as-Code}
 	Das formale Gerüst von TrigBiPy erlaubt eine direkte algorithmische Implementierung nach dem \emph{Knowledge-as-Code}-Paradigma. Der Graph wird als lokales Dateisystem realisiert (Ordner für Sources, Observations und Hypotheses, vorliegend als Markdown-Dateien mit standardisierten YAML-Metadaten für die Gewissheitswerte $v$). Git dient hierbei als native Infrastruktur: Eine Denkschule entspricht einem Branch, eine logische Spannung äußert sich als Merge Conflict, und die Entwertung einer falsifizierten Annahme ist ein Revert.
 	
-	Die konkrete Validierung der Architektur ist über verschiedene computationale Ansätze möglich:
+	Die konkrete Validierung der Architektur ist über verschiedene Ansätze möglich:
 	\begin{itemize}
+		\item \textbf{Prolog \& Lean4 Kernel:} Wird an formalen Sachverhalten geforscht (Logik, Mathematik, ...) können die gängigen Verifikations-Tools verwendet werden.
 		\item \textbf{Probabilistische Logikprogrammierung (z.B. ProbLog):} Zur Resolution der Graphenkanten und Inferenzketten unter Berücksichtigung der kontinuierlichen Validitätswerte $v(h)$.
 		\item \textbf{SAT-Solver / MaxSAT:} Prüfung auf logische Widersprüche innerhalb der harten Constraints und Axiome sowie Bestimmung der maximal konsistenten Teilmenge an Hypothesen.
 		\item \textbf{Abhängige Typsysteme (Dependent Type Systems):} Abbildung von Hypothesen als Typen, wobei der kontinuierliche Wert $v$ über ein metrisches Beweis-Gewichtungssystem validiert wird.
-		\item \textbf{LLM-Ansätze:} Large Language Models werden rein heuristisch zur Extraktion und Formulierung von Hypothesen-Kandidaten aus den Rohquellen verwendet, besitzen jedoch keinerlei epistemische Autorität.
+		\item \textbf{LLM-Ansätze:} Large Language Models werden grds. rein heuristisch zur Generierung neuer Elemente eingesetzt. Jedoch können sie vor allem in nicht formalem Kontext zur inferenz verwendet werden.
+		\item \textbf{Menschliches Peer-Reviewing:} In gewissen Fällen ist eine technische Implementierung zu aufwändig und maximale formale Validität nicht gefordert.
 	\end{itemize}
 	
 	\subsection{TrigBiPy als Framework für AGI}
@@ -319,4 +321,35 @@ TrigBiPy ersetzt daher das Prinzip der epistemischen Atomisierung durch das schw
 Die einfachste Repräsentation besteht darin, ein gesamtes Paper als einzelne Hypothese $h \in H$ zu modellieren. Dies ist formal vollständig zulässig und kann insbesondere bei der Arbeit mit umfangreichen Literaturbeständen sinnvoll sein. Der Nachteil dieser Kompression besteht jedoch darin, dass der Linter Inkohärenzen nur auf Ebene des gesamten Dokuments identifizieren kann. Wird eine Teilannahme falsifiziert, ist nicht mehr nachvollziehbar, welche konkrete Argumentationskomponente betroffen ist.
 
 Für detailliertere Analysen kann dieselbe Publikation schrittweise in mehrere Hypothesen zerlegt werden. Das Paper wird dabei zerlegt. Einzelne Kapitel, Argumente oder Schlussfolgerungen können in eigenständige Hypothesen $h_1,\dots,h_n$, deren Abhängigkeiten explizit modelliert werden können, aufgeteilt werden. Ein wissenschaftliches Paper kann dann als Quelle formaler Entitäten betrachtet werden, aus der Definitions ($D$), Observations ($O$) und Hypotheses ($H$) extrahiert werden. Die Wahl der Granularität ist dabei kein Bestandteil der Grammatik selbst, sondern eine modellierungstechnische Entscheidung des Forschers. Ein komplexes Artefakt kann zunächst als einzelne Hypothese eingeführt und erst bei Bedarf iterativ zerlegt werden. Der ursprüngliche Paper-Knoten bleibt dabei als historischer Einstiegspunkt erhalten. Diese feinere Auflösung ermöglicht es dem Linter, lokale Widersprüche, Zirkelschlüsse oder fehlerhafte Prämissen gezielt zu identifizieren, ohne die gesamte Publikation pauschal zu entwerten. Dies ist jedoch mit mehrarbeit verbunden und kann das System zumüllen.
+
+\subsection{Perspektiven für die theoretische Erweiterung und formale Fundierung}
+
+Für eine umfassende wissenschaftliche Einordnung und Vertiefung des theoretischen Fundaments empfiehlt sich jedoch die Berücksichtigung der folgenden Metaebenen und Erweiterungsoptionen:
+
+\begin{itemize}
+	\item \textbf{Fundamentale Fragen:} Was genau wird optimiert? Welche mathematischen Garantien existieren? Wo liegen die Grenzen? Und wie verhält sich das System zu bestehenden Theorien aus Informatik, Logik und Wissenschaftstheorie?
+	\item \textbf{Berechenbarkeit und Komplexität:} Eine explizite Analyse der algorithmischen Komplexität ist essentiell. Da das System diverse Optimierungs- und Konsistenzprobleme (z.\,B. Minimierung von $H_E$, MaxSAT-Validierung) adressiert, sollte untersucht werden, welche Teilprobleme NP-vollständig sind und ob sich durch Einschränkungen auf spezifische Klassen von Constraint-Graphen effiziente Lösungswege ergeben.
+	
+	\item \textbf{Konvergenztheorie:} Die iterative Natur des Generator-Linter-Prozesses erfordert eine mathematische Fundierung. Es wäre zu prüfen, ob die epistemische Entropie $H_E$ als Lyapunov-Funktion fungieren kann, um formale Konvergenzargumente für den stationären Zustand abzuleiten. Alternativ sind metastabile Zustände, Oszillationen und Zyklen in die Analyse einzubeziehen.
+	
+	\item \textbf{Epistemische Selbstreferenz:} Die Integration von Meta-Aussagen über Hypothesen selbst führt das System in den Bereich der Reflexionslogiken und Gödelschen Fragestellungen. Eine explizite Diskussion zur epistemischen Selbstmodellierung könnte hier einen methodischen Mehrwert bieten.
+	
+	\item \textbf{Vergleich zur Bayes-Theorie:} Zur Abgrenzung gegenüber rein probabilistischen Ansätzen ist eine systematische Gegenüberstellung sinnvoll. Dabei sollten Konzepte wie Prior-Verteilungen, Likelihood-Updates und die spezifischen Differenzierungsmerkmale des Systems (z.\,B. Typrestriktionen und Angriffsrelationen) explizit dargelegt werden.
+	
+	\item \textbf{Verknüpfung mit Argumentation Frameworks:} Die formale Ähnlichkeit der Angriffsrelation $R_t$ zu abstrakten Argumentationsgraphen (nach Dung) ermöglicht den Rückgriff auf etablierte Theorien zu Verteidigung, Stabilität und bevorzugten Interpretationen.
+	
+	\item \textbf{Umgang mit Beobachtungsunsicherheit:} Um die Realitätsnähe zu steigern, sollte die Modellierung von Messfehlern in Betracht gezogen werden. Die Zuweisung von Vertrauenswerten an Beobachtungen würde eine explizite Modellierung der Quellenqualität ermöglichen.
+	
+	\item \textbf{Emergenz und Kompression:} Das Verhältnis von Erkenntnis zu struktureller Komplexität lässt sich über Konzepte wie die \textit{Minimum Description Length} oder Kolmogorov-Komplexität theoretisch untermauern. Gute Theorien ließen sich hierbei als Makro-Hypothesen definieren, die Beobachtungen mit minimaler struktureller Komplexität erklären.
+	
+	\item \textbf{Wissenschaftstheoretische Einordnung:} Ein Diskurs im Kontext klassischer Positionen (Popper, Kuhn, Lakatos, Feyerabend) sowie eine direkte Anknüpfung an die peircesche Abduktionstheorie würde das Modell in die bestehende wissenschaftstheoretische Debatte integrieren.
+	
+	\item \textbf{Agententheorie (Agency):} Die Erweiterung von einer Erkenntnis- zu einer Handlungsmaschine (Agent) erforderte ein Zielsystem sowie Verfahren zur aktiven Datenerhebung. Ein solcher Agent könnte Handlungen wählen, die den erwarteten Informationsgewinn maximieren.
+	
+	\item \textbf{Formale Definition des Erkenntnisgewinns:} Ein zentraler Beitrag könnte in der mathematischen Definition des Erkenntnisgewinns $\Delta K$ liegen:
+	\begin{equation}
+		\Delta K = H_E(E_t) - H_E(E_{t+1})
+	\end{equation}
+	Dies würde die Reduktion epistemischer Entropie bei gleichzeitiger Erhaltung der Erklärungskraft als explizite Zielfunktion etablieren und den Ansatz \textit{"Incoherence is all you need"} formal erhärten.
+\end{itemize}
 \end{document}
