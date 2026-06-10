@@ -62,7 +62,7 @@
 	\section{Architektur des Modells: Epistemische Ontologie und Syntax}
 	
 	\subsection{Kategoriale Ontologie und structural Exklusion}
-	Das System operiert mit drei fundamentalen epistemischen \textbf{Kategorien} ($\mathcal{C} = \{S, O, H\}$). Konkrete Instanzen bezeichnen wir mit Kleinbuchstaben: $s \in S$, $o \in O$, $h \in H$.
+	Das System operiert mit vier fundamentalen epistemischen \textbf{Kategorien} ($\mathcal{C} = \{S, O, H, D\}$). Konkrete Instanzen bezeichnen wir mit Kleinbuchstaben: $s \in S$, $o \in O$, $h \in H$, $d \in D$.
 	
 	\begin{table}[ht]
 		\centering
@@ -70,14 +70,16 @@
 			\toprule
 			\textbf{Kategorie} & \textbf{Symbol} & \textbf{Beschreibung} \\
 			\midrule
-			\textbf{Source} & $S$ & Uninterpretiertes Rohmaterial (z. B. Primärtexte, unstrukturierte Daten). Quellen besitzen im System keine inhärente Bedeutung. \\
+			\textbf{Source} & $S$ & Uninterpretiertes Rohmaterial (z.\,B. Primärtexte, unstrukturierte Daten). Quellen besitzen im System keine inhärente Bedeutung. \\
 			\addlinespace
 			\textbf{Observation} & $O$ & Eine interpretierte Selektion. Jede Beobachtung ist hypothesengeladen; eine interpretationsfreie Wahrnehmung existiert nicht. \\
 			\addlinespace
 			\textbf{Hypothesis} & $H$ & Ein interpretatives Modell oder eine strukturierende Aussage. Jeder Hypothese wird ein reellwertiges Validitätsmaß $v(h) \in [0, 1]$ zugewiesen. \\
+			\addlinespace
+			\textbf{Definition} & $D$ & Eine formale Ontologie. Begriffe werden hier nicht unbedingt durch statischen Fließtext definiert, sondern bei Bedarf mit kategorientheoretischen Konstrukten semantisch codiert, um ihre Relationen im System exakt abzubilden. \\
 			\bottomrule
 		\end{tabular}
-		\caption{Die drei fundamentalen epistemischen Kategorien in TrigBiPy.}
+		\caption{Die vier fundamentalen epistemischen Kategorien in TrigBiPy.}
 	\end{table}
 	
 	Die Architektur etabliert eine universelle Kategorie der Hypothese ($H$). Eine klassische „Theorie“ lässt sich darin als eine Hypothese mit hohem epistemischen Wert ($v(h) \to 1$) beschreiben, während ein offenes wissenschaftliches Spannungsfeld (ein Diskurs) als ein Zustand manifestiert ist, in dem konkurrierende, sich gegenseitig ausschließende Hypothesen unentschiedene Werte aufweisen ($v(h_1) \approx v(h_2) \approx 0.5$).
@@ -116,6 +118,67 @@
 		\item Sobald die Ebene der Beobachtung ($O$) oder der Hypothese ($H$) involviert ist, mündet jede weitere algebraische Kollision ($O \times O$, $O \times H$, $H \times H$) unweigerlich in der Evolution und Verfeinerung des kontinuierlichen Hypothesenraums ($\{H\}$).
 	\end{itemize}
 	Bei jeder Verknüpfung zweier Informationsknoten $x, y \in \mathcal{C}$ evaluiert der Linter die zulässigen Zielkategorien $z \in \pi(x, y)$ und berechnet das resultierende logische Spannungsverhältnis über die kontinuierliche Bewertungsfunktion $v(z)$.
+	
+	\subsection{Die Rolle der Definitions als semantische Typoperatoren}
+	
+	Die Kategorie der \emph{Definitions} ($D$) nimmt innerhalb der epistemischen Grammatik eine Sonderstellung ein. Während Sources ($S$), Observations ($O$) und Hypotheses ($H$) konkrete epistemische Zustände repräsentieren, dienen Definitions nicht der Beschreibung der Welt selbst, sondern der Strukturierung der Begriffe, mit denen diese beschrieben wird. Eine Definition erzeugt daher nicht unmittelbar neue Erkenntnisse über die Welt. Stattdessen legt sie fest, wie andere Entitäten interpretiert, gruppiert oder typisiert werden können. Definitions wirken somit als semantische Typoperatoren auf bestehende epistemische Objekte. Formal sind Definitions keine gewöhnlichen Elemente des Erkenntnisraums, sondern Objekte einer Metaebene. Sie verändern nicht den Inhalt einer Beobachtung oder Hypothese, sondern deren semantischen Interpretationsraum.
+	
+	Betrachtet man beispielsweise die Definition eines Begriffs wie \emph{Säugetier}, so entsteht dadurch keine neue Hypothese über ein konkretes Objekt. Die Definition stellt lediglich ein formales Schema bereit, anhand dessen Beobachtungen und Hypothesen eingeordnet werden können.
+	
+	\begin{quote}
+		Definition: „Säugetier“ \\
+		\quad $\rightarrow$ warmblütig \\
+		\quad $\rightarrow$ Wirbeltier \\
+		\quad $\rightarrow$ Milchdrüsen
+	\end{quote}
+	
+	Erst durch die Anwendung dieser Definition auf Beobachtungen oder Hypothesen entstehen neue epistemische Zusammenhänge. Die Definition selbst fungiert dabei als semantischer Rahmen.
+	
+	Daher werden Definitions nicht in die epistemische Validitätsmatrix $M_\pi$ aufgenommen. Definitions erzeugen keine eigenständigen Zustandsübergänge, sondern beeinflussen die Interpretation bereits existierender Zustände.
+	
+	Anschaulich kann man Definitions als Typen in einem Programmiersystem verstehen. Eine Beobachtung entspricht einem Wert, eine Hypothese einer Aussage über Werte, während eine Definition festlegt, zu welchem Typ diese Elemente gehören und welche Relationen zwischen ihnen zulässig sind.
+	
+	Da das System einem strikten Append-Only-Prinzip folgt, werden Definitions niemals überschrieben oder gelöscht. Erweist sich eine Definition als unzureichend oder zu grob, so wird eine neue (unabhängig referenzierbare Version der) Definition erzeugt und dem Graphen hinzugefügt.
+	
+	Je nach Ausrichtung und Formalisierungsgrad des spezifischen Forschungsprojekts können Definitions dabei ein breites methodisches Spektrum abdecken: Sie können sowohl als klassischer Prosatext als auch als präzise ontologische Konstrukte abgebildet werden. In einer formalen Ontologie (analog zu Beschreibungslogiken oder kategorialen \emph{Ologs}) wird das Konzept über standardisierte Relationen (Properties/Morphismen) zu anderen Klassen definiert. Am Alltagsbeispiel eines „Cappuccinos“ lässt sich dieser methodische Unterschied verdeutlichen:
+	
+	\begin{quote}
+		\textbf{Definition (Prosa):} \\
+		Ein Cappuccino ist ein Kaffeegetränk, das aus einer Basis von Espresso besteht, mit heißer Milch zubereitet und standardmäßig mit Milchschaum bedeckt wird.
+	\end{quote}
+	
+	Für die maschinenlesbare, ontologische Abbildung existieren in der Praxis etablierte semantische Notationen, die ohne kryptische Logik-Symbole auskommen:
+	
+	\begin{quote}
+		\textbf{Variante 1: Manchester-Syntax (OWL-Standard)} \\
+		Diese Notation übersetzt strukturelle Relationen in eine intuitive, textbasierte Logik:
+		\begin{verbatim}
+			Class: Cappuccino
+			EquivalentTo: 
+			Kaffeegetränk 
+			and hatBasis some Espresso 
+			and hatZutat some HeißeMilch 
+			and hatTopping some Milchschaum
+		\end{verbatim}
+	\end{quote}
+	
+	\begin{quote}
+		\textbf{Variante 2: Turtle-Notation (RDF-Graph-Standard)} \\
+		Diese Notation bildet das Konzept direkt als gerichteten Graphen ab, wie er in Wissensdatenbanken verwendet wird:
+		\begin{verbatim}
+			:Cappuccino rdf:type owl:Class ;
+			rdfs:subClassOf :Kaffeegetränk ;
+			:hatBasis       :Espresso ;
+			:hatZutat       :HeißeMilch ;
+			:hatTopping     :Milchschaum .
+		\end{verbatim}
+	\end{quote}
+	
+	Reine Prosadefinitionen stoßen in der Praxis schnell an Grenzen, da sie zwar für den menschlichen Leser intuitiv, aber für eine verlässliche maschinelle Auswertung ihrer inneren Logik ungeeignet sind. Begriffe blieben in diesem Fall lediglich Textfragmente, deren Interpretation vollständig vom Leser abhängt. Semantische Verschiebungen, Mehrdeutigkeiten oder inkonsistente Verwendungen (etwa die Abgrenzung zum Latte Macchiato über die exakten Mengenverhältnisse oder Schichtungen) ließen sich so nicht algorithmisch erkennen.
+	
+	Die Formulierung von Definitions als ontologische Konstrukte bietet hierbei entscheidende Vorteile. Wie im obigen Beispiel illustriert, erlaubt sie es, Begriffe als eigenständige Objekte und deren Kompositionsregeln als formale Relationen innerhalb einer strengen Struktur zu fassen. Dieser Ansatz erweist sich in der Softwarearchitektur von TrigBiPy als äußerst praxistauglich, da er direkt in Graphdatenbanken oder Reasonern abgebildet werden kann. Er macht Bedeutungen selbst zu expliziten, berechenbaren Objekten des Systems und verhindert, dass der Wissensgraph auf eine bloße Sammlung unstrukturierter Texte reduziert wird. Ohne diese formale Schicht würde TrigBiPy Gefahr laufen, auf ein gewöhnliches Notizsystem oder einen rein statistischen Textgenerator reduziert zu werden. 
+	
+	Die formalen Definitions bilden daher die semantische Infrastruktur, welche die epistemische Grammatik überhaupt erst maschinell auswertbar macht. Diese Unterscheidung knüpft an das Carnapsche Projekt der Bedeutungsfixierung durch formale Rekonstruktion sowie an die strukturalistische Wissenschaftstheorie nach Sneed und Stegmüller an, in der wissenschaftliche Begriffe nicht über subjektives Weltverständnis, sondern über ihre explizite Einbettung in ein formales Theoriegerüst bestimmt werden.
 	
 	\subsection{Makro-Ontologien und rekursive Referenzierung}
 	Zur Reduktion topologischer Komplexität in ausgedehnten Graphenstrukturen führt die Architektur eine strukturelle Meta-Ebene ein. Sei $\mathcal{M}$ die Menge der \emph{Makro-Hypothesen} (Theorie-Cluster). Eine ontologische Projektionsfunktion $\phi: \mathcal{M} \to \mathcal{P}(H)$ aggregiert eine frei definierbare Menge von Elementarhypothesen zu einer benannten, referenzierbaren Einheit.
@@ -291,19 +354,19 @@
 	\textbf{Incoherence is all you need.} Inkohärenz ist der Motor der Erkenntnis. In einer hybriden AGI-Architektur übernimmt das neuronale Netz die Intuition (Vorschläge für Kanten und neue Hypothesen), während der TrigBiPy-Graph die harte logische Konsistenz und die algebraische Optimierung des Hypothesenraums erzwingt. Halluzinationen werden somit zu produktiven Hypothesen-Vorschlägen (strukturellen Inkohärenzen) degradiert, die das System im Zuge der Entropieminimierung automatisch evaluiert, gewichtet oder devaluiert.
 	
 \section{ERWEITERUNGEN}
-1. Ontologische Erweiterung: Die Einführung der "Definitions" ($D$)Das ursprüngliche kategoriale System ($S, O, H$) wird um eine vierte, essenzielle Klasse erweitert: Definitions ($D$).Traditionelle Systeme behandeln Worterklärungen oft als rein textuelle, statische Prosa. In TrigBiPy sind Definitions jedoch formale Typ-Konstruktoren. Ein Begriff wird nicht durch einen Fließtext definiert, sondern ausschließlich durch seine mathematisch-logischen Relationen zu anderen Entitäten im System.Entscheidend für die Wissensdynamik ist das Append-Only-Prinzip: Definitions werden niemals in-place revidiert oder überschrieben. Stellt sich heraus, dass eine Definition im Kontext neuer Beobachtungen nicht mehr passt oder unzureichend abgegrenzt ist, wird eine neue Version (oder Aufspaltung) erstellt und an den Graphen angehängt. Das historische Wissen und die alten Definitions bleiben unangetastet im System; nichts darf verloren gehen. Kategorientheoretische Fundierung: Die Relationen zwischen den Begriffen lassen sich mithilfe von Kathegorientheorie auffassen. Dieser Ansatz zeigt, dass das System kein "wildes Hantieren mit Texten" (oder rein probabilistisches Rauschen eines LLMs) sein kann.
+\subsection{Curry-Howard-Isomorphismus.} Um wissenschaftstheoretisch zu untermauern, dass das System mehr tut als nur unstrukturierten Text zu generieren, wird der Curry-Howard-Isomorphismus als theoretischer Rahmen betrachtet. Jede Entität im System repräsentiert einen formalen Typ. Logische Schlussfolgerungen und das Zusammenfügen von Aussagen zu neuen Argumenten entsprechen der Konstruktion von Programmen. Weil Prosatext keine formellen Ausdrücke sind kann man es in dem Fall nicht beweisen, aber es bildet eine Analogie. Wenn Mathematik in TrigBiPy betrieben wird, dann lässt sich dies sogar formell beweisen.
 
-2. Curry-Howard-Isomorphismus. Um wissenschaftstheoretisch zu untermauern, dass das System mehr tut als nur unstrukturierten Text zu generieren, wird der Curry-Howard-Isomorphismus als theoretischer Rahmen betrachtet. Jede Entität im System repräsentiert einen formalen Typ. Logische Schlussfolgerungen und das Zusammenfügen von Aussagen zu neuen Argumenten entsprechen der Konstruktion von Programmen. Weil Prosatext keine formellen Ausdrücke sind kann man es in dem Fall nicht beweisen, aber es bildet eine Analogie. Wenn Mathematik in TrigBiPy betrieben wird, dann lässt sich dies sogar formell beweisen.
+\subsection{Die funktionale Entkopplung von Generator und Linter:} Die Architektur des Systems wird in zwei klar getrennte, asynchrone Instanzen unterteilt:
+\begin{itemize}
+\item Der Generator: Seine einzige Aufgabe ist es, kontinuierlich an neuen Elementen zu arbeiten, die dem System hinzugefügt werden können. Er konstruiert neue Hypothesen, Definitions oder Ableitungen und knüpft die logischen Eltern-Relationen. Er generiert das Material, das den Wissensgraphen wachsen lässt.
+\item Der Linter: Er fungiert ausschließlich als Diagnose-Werkzeug. Seine Aufgabe ist es, das bestehende System auf Inkohärenz zu scannen. Findet er logische Widersprüche, Verletzungen der epistemischen Grammatik oder Zirkelschlüsse, so gibt er entsprechende Fehlerberichte aus. Er modifiziert die Dateien nicht selbst, sondern markiert lediglich die aufgedeckten Konflikte im Graphen.
+\end{itemize}
 
-3. Die funktionale Entkopplung von Generator und Linter: Die Architektur des Systems wird in zwei klar getrennte, asynchrone Instanzen unterteilt: 
-Der Generator: Seine einzige Aufgabe ist es, kontinuierlich an neuen Elementen zu arbeiten, die dem System hinzugefügt werden können. Er konstruiert neue Hypothesen, Definitions oder Ableitungen und knüpft die logischen Eltern-Relationen. Er generiert das Material, das den Wissensgraphen wachsen lässt.
-Der Linter: Er fungiert ausschließlich als Diagnose-Werkzeug. Seine Aufgabe ist es, das bestehende System auf Inkohärenz zu scannen. Findet er logische Widersprüche, Verletzungen der epistemischen Grammatik oder Zirkelschlüsse, so gibt er entsprechende Fehlerberichte aus. Er modifiziert die Dateien nicht selbst, sondern markiert lediglich die aufgedeckten Konflikte im Graphen.
+\subsection{Non-destruktive Fehlerbehandlung durch Angriffsrelationen:} Da das System einem strengen Append-Only-Paradigma folgt (kein Löschen von Dateien), erfordert die Handhabung falsifizierter oder inkohärenter Hypothesen einen mathematischen Lösungsansatz. Wird durch den Linter ein Fehler im Graphen aufgedeckt, reagiert der Generator mit neuen Hypothesen usw die Angriffsrelationen zu dem fehlerhaften Element haben. Anstatt eine fehlerhafte Hypothese zu entfernen, wird ein neues Element generiert, das einen formalen Angriff auf die inkohärente Hypothese ausführt und deren Validitätswert heruntersetzt. Die "falsche" Hypothese bleibt als warnendes Artefakt im System erhalten.
 
-4. Non-destruktive Fehlerbehandlung durch Angriffsrelationen: Da das System einem strengen Append-Only-Paradigma folgt (kein Löschen von Dateien), erfordert die Handhabung falsifizierter oder inkohärenter Hypothesen einen mathematischen Lösungsansatz. Wird durch den Linter ein Fehler im Graphen aufgedeckt, reagiert der Generator mit neuen Hypothesen usw die Angriffsrelationen zu dem fehlerhaften Element haben. Anstatt eine fehlerhafte Hypothese zu entfernen, wird ein neues Element generiert, das einen formalen Angriff auf die inkohärente Hypothese ausführt und deren Validitätswert heruntersetzt. Die "falsche" Hypothese bleibt als warnendes Artefakt im System erhalten.
+\subsection{Anwendungsbeispiel:} Das formale Bootstrapping. Um die anwendbarkeit der epistemischen Grammatik zu demonstrieren, wird im Paper ein folgendes skizziert: Initiiert man das System lediglich mit einem Satz formaler Axiome (wie der Zermelo-Fraenkel-Mengenlehre),kann der Generator als reine formale Engine Mathematik betreiben. Der Linter könnte hier sogar geforkter Code von Lean4 oder ähnlich sein. Dies zeigt, dass TrigBiPy nicht nur empirische Wissenschaftsdiskurse, sondern auch den axiomatischen Aufbau der reinen Mathematik algorithmisch abbilden kann. Alles was von Menschen erkannt werden kann, passt in das Framework.
 
-5. Anwendungsbeispiel: Das formale Bootstrapping. Um die anwendbarkeit der epistemischen Grammatik zu demonstrieren, wird im Paper ein folgendes skizziert: Initiiert man das System lediglich mit einem Satz formaler Axiome (wie der Zermelo-Fraenkel-Mengenlehre),kann der Generator als reine formale Engine Mathematik betreiben. Der Linter könnte hier sogar geforkter Code von Lean4 oder ähnlich sein. Dies zeigt, dass TrigBiPy nicht nur empirische Wissenschaftsdiskurse, sondern auch den axiomatischen Aufbau der reinen Mathematik algorithmisch abbilden kann. Alles was von Menschen erkannt werden kann, passt in das Framework.
-
-6. Validity: Der Wahrheitswert einer Aussage ist kein starrer Wert, der einfach in der Datei festgeschrieben steht, sondern wird dynamisch durch den Linter berechnet. Stattdessen gibt der Autor bei jeder neuen Schlussfolgerung an, wie sicher er sich bei diesem logischen Schritt ist (Konfidenzwert). Bei einer mathematischen Deduktion liegt dieser Wert bei 1; bei logischen oder induktiven Argumenten ist er entsprechend niedriger, beispielsweise bei 0,9. Auch für kreative Vermutungen gibt es Raum: Wenn eine Idee plausibel erscheint, aber noch unbewiesen ist, kann der Autor einen vorläufigen Wert (z. B. 0,5) vergeben. So erlaubt das System eine explorative Forschung, ohne den Autor durch ein zu enges formales Korsett einzuschränken. Aus der Tatsache, dass viele soziale Säugetiere in komplexen Gruppenverbänden leben ($h_1$) und dass diese Gruppen nur bei hoher interner Stabilität langfristig überleben ($h_2$), könnte dem Forscher einfallen, dass reziproke Altruismus-Mechanismen (Hilfeleistung auf Gegenseitigkeit) als evolutionäres Korrektiv zur Stabilisierung von Gruppengrößen entstanden sind ($h_3$). Da er sich bei dieser Verknüpfung noch unsicher ist, ob die Kausalität direkt ist oder andere Faktoren wie Umweltressourcen eine Rolle spielen, vergibt er bei der Erstellung des neuen Elements für $h_3$ einen Konfidenzwert von 0.5. Dieses Vorgehen verdeutlicht, dass TrigBiPy kein rein formelles Korsett darstellt, sondern ein exploratives Werkzeug: Der Forscher markiert für das System explizit, dass hier ein vielversprechender Zusammenhang vermutet wird, dessen Beweislast jedoch noch gering ist. Mathematisch wird dieser Wert in die Inferenzmatrix eingespeist und bleibt dem Linter sowie künftigen Iterationen als Ausgangspunkt erhalten. Erweist sich die Hypothese durch weitere Quellen als haltbar, kann der Konfidenzwert in einem neuen Schritt angehoben werden; bei widersprüchlichen Evidenzen hingegen greifen die mathematischen Angriffsrelationen, welche die Validität der Vermutung devaluieren. Somit wird die menschliche Intuition als ‚Generator für Konfidenz‘ integraler Bestandteil der algorithmischen Wissensrepräsentation.
+\subsection{Validity:} Der Wahrheitswert einer Aussage ist kein starrer Wert, der einfach in der Datei festgeschrieben steht, sondern wird dynamisch durch den Linter berechnet. Stattdessen gibt der Autor bei jeder neuen Schlussfolgerung an, wie sicher er sich bei diesem logischen Schritt ist (Konfidenzwert). Bei einer mathematischen Deduktion liegt dieser Wert bei 1; bei logischen oder induktiven Argumenten ist er entsprechend niedriger, beispielsweise bei 0,9. Auch für kreative Vermutungen gibt es Raum: Wenn eine Idee plausibel erscheint, aber noch unbewiesen ist, kann der Autor einen vorläufigen Wert (z. B. 0,5) vergeben. So erlaubt das System eine explorative Forschung, ohne den Autor durch ein zu enges formales Korsett einzuschränken. Aus der Tatsache, dass viele soziale Säugetiere in komplexen Gruppenverbänden leben ($h_1$) und dass diese Gruppen nur bei hoher interner Stabilität langfristig überleben ($h_2$), könnte dem Forscher einfallen, dass reziproke Altruismus-Mechanismen (Hilfeleistung auf Gegenseitigkeit) als evolutionäres Korrektiv zur Stabilisierung von Gruppengrößen entstanden sind ($h_3$). Da er sich bei dieser Verknüpfung noch unsicher ist, ob die Kausalität direkt ist oder andere Faktoren wie Umweltressourcen eine Rolle spielen, vergibt er bei der Erstellung des neuen Elements für $h_3$ einen Konfidenzwert von 0.5. Dieses Vorgehen verdeutlicht, dass TrigBiPy kein rein formelles Korsett darstellt, sondern ein exploratives Werkzeug: Der Forscher markiert für das System explizit, dass hier ein vielversprechender Zusammenhang vermutet wird, dessen Beweislast jedoch noch gering ist. Mathematisch wird dieser Wert in die Inferenzmatrix eingespeist und bleibt dem Linter sowie künftigen Iterationen als Ausgangspunkt erhalten. Erweist sich die Hypothese durch weitere Quellen als haltbar, kann der Konfidenzwert in einem neuen Schritt angehoben werden; bei widersprüchlichen Evidenzen hingegen greifen die mathematischen Angriffsrelationen, welche die Validität der Vermutung devaluieren. Somit wird die menschliche Intuition als ‚Generator für Konfidenz‘ integraler Bestandteil der algorithmischen Wissensrepräsentation.
 
 \subsection{Epistemische Granularität und nicht-atomare Erkenntnisobjekte}
 
