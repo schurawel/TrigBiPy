@@ -49,20 +49,37 @@
 	\renewcommand{\abstractname}{Abstract}
 	\addcontentsline{toc}{section}{A\quad Abstract}
 	\begin{abstract}
-		\begin{quote}
-			Der vorliegende Artikel skizziert die Architektur von „TrigBiPy“, einem formalen System zur Validierung menschlicher Erkenntnisprozesse. Entgegen traditionellen Ansätzen des Personal Knowledge Managements (PKM) und rein probabilistischer Sprachmodelle postuliert TrigBiPy, dass Erkenntnisgewinn als ein mathematisches System epistemischer Zustandsübergänge (Morphismen) beschrieben werden kann. Durch die Reduktion auf drei fundamentale Kategorien (Quelle, Beobachtung, Hypothese) wird eine geschlossene algebraische Struktur definiert. Epistemische Aussagen und Spannungsfelder werden in einem einheitlichen, kontinuierlichen Hypothesenraum zusammengeführt, in dem Elementen reellwertige Gewissheiten $v \in [0, 1]$ zugewiesen sind. Das System fungiert als syntaktisch-probabilistischer Compiler (epistemischer Linter), der logische Inkohärenzen als informationstheoretische Spannungen aufdeckt und Argumentationsketten algorithmisch evaluiert. Die interne Dynamik reguliert sich dabei über exklusive Hypothesengruppen, funktionale Inferenzmatrizen und rekursive Makro-Ontologien. Implementiert als \emph{Knowledge-as-Code}-Architektur lässt sich die Kohärenz des Systems durch SAT-Solver, probabilistische Logikprogrammierung oder abhängige Typsysteme formal validieren.
-		\end{quote}
+		\emph{TrigBiPy} ist ein formales epistemisches Framework zur algorithmischen Strukturierung und dynamischen Optimierung von Erkenntnisprozessen in kontinuierlichen Hypothesenräumen. Im Gegensatz zu klassischen Ansätzen des Personal Knowledge Management oder rein probabilistischen Modellen der künstlichen Intelligenz interpretiert das System Wissensgenerierung als einen strikt kontrollierten Prozess der Inkohärenzreduktion, in dem logische Spannungen nicht eliminiert, sondern als primäre treibende Ressource operationalisiert werden.
+		
+		Die Architektur trennt den Erkenntnisprozess in zwei asynchrone Instanzen: einen generativen Generator zur Expansion des Hypothesenraums und einen formalen Linter zur kontinuierlichen Evaluierung epistemischer Konsistenz. Dadurch wird Wissen nicht als statisches Archiv, sondern als kompilierbare Knowledge-as-Code-Struktur modelliert, deren Elemente über kategoriale Ontologien, Validitätswerte und gerichtete Inferenzrelationen miteinander verknüpft sind.
+		
+		Zentrale Beiträge des Frameworks sind (i) die Formalisierung epistemischer Kategorien als strukturierte Typräume, (ii) die Einführung einer kontinuierlichen Validitätslogik zur graduellen Bewertung von Hypothesen, (iii) die Definition epistemischer Entropie als globale Optimierungsgröße sowie (iv) die Modellierung von Erkenntnisgewinn als Minimierungsprozess logischer Inkohärenz.
+		
+		TrigBiPy versteht wissenschaftliche Erkenntnis somit als dynamisches Constraint-Satisfaction-Problem auf einem gewichteten Hypothesengraphen und bietet eine einheitliche formale Grundlage zur Integration von empirischer Forschung, logischer Deduktion und algorithmischer Inferenz.
 	\end{abstract}
 	
 	\section{Einleitung: Die strukturelle Krise der Wissensrepräsentation}
-	Historische Konzepte der "Augmented Intelligence" (etwa Bushs Memex oder Nelsons Xanadu) scheitern in der Praxis oft an der kognitiven Überlastung des Nutzers. Wenn alle Informationen frei miteinander verknüpfbar sind, entsteht ein semantischer Sumpf ohne logische Verifikationsinstanz. Die Suche nach der perfekten Methode für ein spezifisches Forschungsobjekt ist oft ein Holzweg, da sich die Methode nicht am Inhalt des Objekts festmachen lässt.
 	
-	Das TrigBiPy-Modell begegnet diesem Problem durch die These, dass Erkenntnisgewinnung kein ungeordneter kreativer Akt ist, sondern eine kontrollierte Dynamik der Inkohärenzreduktion innerhalb eines gewichteten Hypothesenraums. Das System erzeugt keine autonome Wahrheit, sondern prüft, ob epistemische Konstruktionen innerhalb einer definierten Grammatik zulässig sind und wie sich neue Evidenzen auf das globale Geflecht aus Hypothesen auswirken. TrigBiPy fungiert somit als epistemischer Linter – vergleichbar mit Theorembeweisern wie \emph{Lean} oder \emph{Coq}, erweitert jedoch um eine kontinuierliche Bewertungsfunktion, um Widersprüche als graduelle Spannungsfelder mathematisch handhabbar zu machen.
+	Historische und zeitgenössische Konzepte der \emph{Augmented Intelligence} – von Vannevar Bushs visionärem \emph{Memex} über Ted Nelsons \emph{Xanadu} bis hin zu modernen, atomistischen Wissensmanagementsystemen wie dem Zettelkasten – leiden unter einem fundamentalen, strukturellen Defekt \cite{241}. Sie basieren auf der Fehlannahme, dass Erkenntnisgewinn eine monotone Akkumulation von Information und deren freie, assoziative Verknüpfung sei \cite{241, 242, 390}. In der Praxis führt dieser Ansatz unweigerlich zu einem unstrukturierten, semantischen Sumpf \cite{242}. Wenn jeder Gedanke mit jedem anderen verknüpft werden kann, fehlt dem System eine formale Verifikationsinstanz; es kollabiert unter der kognitiven Last seiner eigenen Komplexität \cite{241, 242}. Der Versuch, dieses Problem durch das Ausformulieren immer spezifischerer, inhaltsabhängiger Forschungsmethoden zu lösen, erweist sich als methodischer Holzweg \cite{243}.
 	
-	\section{Architektur des Modells: Epistemische Ontologie und Syntax}
+	Das hier vorgestellte Framework \emph{TrigBiPy} bricht radikal mit diesem Paradigma. Es postuliert, dass Erkenntnisgewinn kein ungeordneter kreativer Akt, sondern eine streng kontrollierte, mathematische Dynamik der Inkohärenzreduktion innerhalb eines gewichteten, kontinuierlichen Hypothesenraums ist \cite{235, 237, 244}. \emph{TrigBiPy} generiert keine autonome Wahrheit, sondern erzwingt eine formale, computationale Disziplinierung des Denkens \cite{245, 411}. Es versteht Wissensrepräsentation nicht als statisches Archiv (Personal Knowledge Management), sondern als eine kompilierbare \emph{Knowledge-as-Code}-Architektur, deren inhärente logische Spannungen algorithmisch mess- und optimierbar sind \cite{235, 238, 396, 428}. 
+	
+	Widersprüche und logische Konflikte werden in \emph{TrigBiPy} nicht als Systemfehler exkludiert, sondern als die primäre Berechnungsressource (der Gradient) des Erkenntnisprozesses operationalisiert: \emph{Incoherence is all you need} \cite{238, 397, 398, 441}. Durch diese funktionale Trennung wird der Erkenntnisprozess von einem rein philosophischen Diskurs in ein berechenbares, formales Optimierungsproblem überführt. Um diese Dynamik rechentechnisch zu isolieren und zu steuern, partitioniert die Systemarchitektur den epistemischen Prozess in zwei strikt getrennte, asynchrone Instanzen \cite{246}:
+	
+	\begin{itemize}
+		\item \textbf{Der Generator (Heuristische Synthese):} Seine einzige Aufgabe ist die kontinuierliche Expansion des Wissensgraphen \cite{246, 248}. Er arbeitet als rein generative Engine (getrieben durch menschliche Intuition oder als Heuristik über Large Language Models), fügt dem System neue Definitions, Observations oder Hypotheses hinzu und knüpft die gerichteten, logischen Eltern-Relationen \cite{247, 324, 435}.
+		\item \textbf{Der Linter (Formale Diagnose):} Er fungiert als unbestechlicher, mathematischer Compiler des Systems \cite{238, 249}. Seine Aufgabe ist das permanente Scannen des Graphen auf logische Inkohärenzen, Zirkelschlüsse und die Verletzung der epistemischen Grammatik \cite{249, 250}. Der Linter manipuliert Daten niemals selbst, sondern deckt informationstheoretische Spannungen auf und devaluiert über mathematische Angriffsrelationen die Validität widersprüchlicher Hypothesen \cite{238, 251, 323, 387, 388}.
+	\end{itemize}
+	
+	Wichtig für das Verständnis dieses Frameworks ist, dass TrigBiPy nicht den Versuch untiert, eine absolute, sterile Perfektion zu erreichen. Das System soll kein methodisches Korsett etablieren, welches die kreative Intuition des Forschers erstickt oder in bürokratische Formalismen zwängt.
+	
+	Gleichzeitig grenzt sich TrigBiPy scharf von Systemen ab, die lediglich semantisches Rauschen in anderes Rauschen umformen (wie es bei ungesteuerten Sprachmodellen der Fall ist). Stattdessen bildet die mathematische Grammatik den Kern dessen ab, was in unseren Gehirnen intuitiv und oft unbewusst passiert: das kontinuierliche, feine Ausbalancieren von Vermutungen, Beobachtungen und Widersprüchen. Das System zwingt den Nutzer nicht zu perfektem Vorab-Wissen, sondern bietet eine dynamische Gerüststruktur, die mit der Unschärfe des menschlichen Denkens organisch mitwächst, diese jedoch algorithmisch einfängt und überprüfbar macht.
+	
+	\section{Epistemische Operationen}
 	
 	\subsection{Kategoriale Ontologie und structural Exklusion}
 	Das System operiert mit vier fundamentalen epistemischen \textbf{Kategorien} ($\mathcal{C} = \{S, O, H, D\}$). Konkrete Instanzen bezeichnen wir mit Kleinbuchstaben: $s \in S$, $o \in O$, $h \in H$, $d \in D$.
+	Um den iterativen Prozess formal zu fassen, unterscheiden wir zwischen den abstrakten Kategorien $\mathcal{C}$ und den zeitabhängigen Mengen der instanziierten Elemente im Systemgraphen. Wir definieren das globale System zum diskreten Zeitpunkt $t$ als das Tupel der aktuell existierenden Teilmengen: $E_t = (\mathfrak{S}_t, \mathfrak{O}_t, \mathfrak{H}_t, \mathfrak{D}_t)$, wobei $\mathfrak{S}_t, \mathfrak{O}_t, \mathfrak{H}_t, \mathfrak{D}_t \subset \mathbb{W}_{\text{pot}}$ und für die Axiome gilt $\mathfrak{A}_t \subseteq \mathfrak{H}_t$, wobei diese der Kategorie H angehören.
 	
 	\begin{table}[ht]
 		\centering
@@ -74,7 +91,7 @@
 			\addlinespace
 			\textbf{Observation} & $O$ & Eine interpretierte Selektion. Jede Beobachtung ist hypothesengeladen; eine interpretationsfreie Wahrnehmung existiert nicht. \\
 			\addlinespace
-			\textbf{Hypothesis} & $H$ & Ein interpretatives Modell oder eine strukturierende Aussage. Jeder Hypothese wird ein reellwertiges Validitätsmaß $v(h) \in [0, 1]$ zugewiesen. \\
+			\textbf{Hypothesis} & $H$ & Ein interpretatives Modell oder eine strukturierende Aussage. Jeder Hypothese wird ein reellwertiges Validitätsmaß $v(h) \in [0, 1]$ zugewiesen. Für Axiome gilt $v(a) = 1$.\\
 			\addlinespace
 			\textbf{Definition} & $D$ & Eine formale Ontologie. Begriffe werden hier nicht unbedingt durch statischen Fließtext definiert, sondern bei Bedarf mit kategorientheoretischen Konstrukten semantisch codiert, um ihre Relationen im System exakt abzubilden. \\
 			\bottomrule
@@ -180,14 +197,25 @@
 	
 	Die formalen Definitions bilden daher die semantische Infrastruktur, welche die epistemische Grammatik überhaupt erst maschinell auswertbar macht. Diese Unterscheidung knüpft an das Carnapsche Projekt der Bedeutungsfixierung durch formale Rekonstruktion sowie an die strukturalistische Wissenschaftstheorie nach Sneed und Stegmüller an, in der wissenschaftliche Begriffe nicht über subjektives Weltverständnis, sondern über ihre explizite Einbettung in ein formales Theoriegerüst bestimmt werden.
 	
-	\subsection{Makro-Ontologien und rekursive Referenzierung}
-	Zur Reduktion topologischer Komplexität in ausgedehnten Graphenstrukturen führt die Architektur eine strukturelle Meta-Ebene ein. Sei $\mathcal{M}$ die Menge der \emph{Makro-Hypothesen} (Theorie-Cluster). Eine ontologische Projektionsfunktion $\phi: \mathcal{M} \to \mathcal{P}(H)$ aggregiert eine frei definierbare Menge von Elementarhypothesen zu einer benannten, referenzierbaren Einheit.
+	\subsection{Wahrheitswerte Epistemischer Elemente} Der Wahrheitswert einer Hypothese ist kein starrer Wert, der einfach in der Datei festgeschrieben steht, sondern wird dynamisch durch den Linter berechnet. Stattdessen gibt der Autor bei jeder neuen Schlussfolgerung an, wie sicher er sich bei diesem logischen Schritt ist (Konfidenzwert). Bei einer mathematischen Deduktion liegt dieser Wert bei 1; bei logischen oder induktiven Argumenten ist er entsprechend niedriger, beispielsweise bei 0,9. Auch für kreative Vermutungen gibt es Raum: Wenn eine Idee plausibel erscheint, aber noch unbewiesen ist, kann der Autor einen vorläufigen Wert (z. B. 0,5) vergeben. So erlaubt das System eine explorative Forschung, ohne den Autor durch ein zu enges formales Korsett einzuschränken. Aus der Tatsache, dass viele soziale Säugetiere in komplexen Gruppenverbänden leben ($h_1$) und dass diese Gruppen nur bei hoher interner Stabilität langfristig überleben ($h_2$), könnte dem Forscher einfallen, dass reziproke Altruismus-Mechanismen (Hilfeleistung auf Gegenseitigkeit) als evolutionäres Korrektiv zur Stabilisierung von Gruppengrößen entstanden sind ($h_3$). Da er sich bei dieser Verknüpfung noch unsicher ist, ob die Kausalität direkt ist oder andere Faktoren wie Umweltressourcen eine Rolle spielen, vergibt er bei der Erstellung des neuen Elements für $h_3$ einen Konfidenzwert von 0.5. Dieses Vorgehen verdeutlicht, dass TrigBiPy kein rein formelles Korsett darstellt, sondern ein exploratives Werkzeug: Der Forscher markiert für das System explizit, dass hier ein vielversprechender Zusammenhang vermutet wird, dessen Beweislast jedoch noch gering ist. Mathematisch wird dieser Wert in die Inferenzmatrix eingespeist und bleibt dem Linter sowie künftigen Iterationen als Ausgangspunkt erhalten. Erweist sich die Hypothese durch weitere Quellen als haltbar, kann der Konfidenzwert in einem neuen Schritt angehoben werden; bei widersprüchlichen Evidenzen hingegen greifen die mathematischen Angriffsrelationen, welche die Validität der Vermutung devaluieren. Somit wird die menschliche Intuition als ‚Generator für Konfidenz‘ integraler Bestandteil der algorithmischen Wissensrepräsentation. Ähnliches gilt für Observations. Hier wird jedoch nicht die logische Plausibilität einer Schlussfolgerung oder die intuitive Gewissheit des Autors abgebildet, sondern die empirische Zuverlässigkeit und informationelle Qualität der Datenquelle quantifiziert. Während der Konfidenzwert einer Hypothese die inhärente Unsicherheit eines rationalen oder abduktiven Schritts beschreibt, reflektiert der Wert einer Observation die Fehlbarkeit der empirischen Erfassung selbst. Eine Messung aus einem kalibrierten wissenschaftlichen Instrument erhält somit einen maximalen epistemischen Status, während ein anekdotischer Bericht aus zweiter Hand mit einem entsprechend reduzierten Basiswert in die Inferenzmatrix einfließt. Für den Linter bedeutet diese Differenzierung, dass im Falle eines logischen Widerspruchs zwischen einer bereits hochgradig konsistenten Hypothesenmenge und einer neuen Observation nicht zwingend das theoretische Fundament kollabieren muss. Stattdessen erlaubt die mathematische Gewichtung dem Optimierungsalgorithmus, ein empirisches Rauschen oder einen Messfehler als wahrscheinlichste Ursache der Inkohärenz zu isolieren, anstatt eine strukturell wertvolle Makro-Hypothese voreilig zu falsifizieren. Auf diese Weise fängt TrigBiPy die Realität wissenschaftlicher Praxis formal ein, in der empirische Evidenzen stets mit einer inhärenten Unsicherheit behaftet sind, und sichert die Stabilität des globalen Wissensgraphen gegen fehlerhafte Datenquellen ab.
 	
-	Eine Makro-Hypothese $m \in \mathcal{M}$ verhält sich im Abbildungsraum $\pi$ syntaktisch wie eine singuläre Elementarhypothese und kann folglich als Prämisse oder Zielknoten in Verknüpfungen eingesetzt werden. Ihre aggregierte System-Validität $v(m)$ berechnet sich als das Produkt ihrer Kernkomponenten:
-	\[
-	v(m) = \prod_{h \in \phi(m)} v(h)
-	\]
-	Sinkt die Validität auch nur einer fundamentalen Komponente innerhalb des Clusters gegen Null, kollabiert die makro-ontologische Repräsentanz mathematisch im Gesamtsystem.
+	
+	\subsection{Epistemische Granularität und nicht-atomare Erkenntnisobjekte}
+	
+	Viele Systeme des Personal Knowledge Managements, insbesondere atomistische Ansätze wie der Zettelkasten, basieren auf der Annahme, dass Erkenntnis sich letztlich auf eine Menge möglichst kleiner, isolierter Gedanken reduzieren lässt. TrigBiPy macht eine solche Annahme ausdrücklich nicht. 
+	
+	Die epistemische Grammatik operiert auf den Kategorien der Entitäten und ihren Relationen, nicht auf einer fest vorgeschriebenen semantischen Größe der repräsentierten Inhalte. Ein Element kann daher eine einzelne Aussage, ein Argument, ein mathematischer Beweis, ein wissenschaftliches Paper, ein Buch oder sogar ein umfassendes Forschungsprogramm sein. Für die formale Verarbeitung ist nicht die Länge oder Komplexität eines Elements entscheidend, sondern ausschließlich seine Einbettung in das Netzwerk epistemischer Relationen. Das System folgt somit keinem Dogma epistemischer Atomisierung, sondern einem Prinzip progressiver Explikation: Nur dort, wo zusätzliche Auflösung einen tatsächlichen Erkenntnisgewinn verspricht, wird die interne Struktur eines Artefakts weiter formalisiert.
+	
+	Der Linter bewertet die Elemente nicht als solche, sondern die Verbindungen zwischen ihnen: Die erlaubtheit einer epistemischen Operation, Abhängigkeiten, Angriffsrelationen, Inferenzketten, Konfidenzwerte usw. Damit wird Erkenntnis nicht auf atomare Notizen reduziert. Stattdessen erlaubt das System die Verwendung nicht-atomarer Erkenntnisobjekte beliebiger Größe, sofern diese als referenzierbare Elemente innerhalb der epistemischen Grammatik auftreten können.
+	
+	Diese Eigenschaft ist für eine universelle Methode der Erkenntnisgewinnung von zentraler Bedeutung. In realen Forschungsprozessen existieren zahlreiche Konzepte, deren Bedeutung erst aus dem Zusammenspiel vieler Aussagen entsteht und die sich nicht verlustfrei in voneinander unabhängige Atome zerlegen lassen. Eine erzwungene Atomisierung führt häufig zu einer Fragmentierung des Wissensbestandes und erhöht die organisatorische Komplexität, ohne einen entsprechenden epistemischen Mehrwert zu erzeugen. Oft führt dies sogar zu einer stagnierung der eigentlichen Forschungsarbeit, da der forscher sich "verzettelt".
+	
+	TrigBiPy ersetzt daher das Prinzip der epistemischen Atomisierung durch das schwächere Prinzip der epistemischen Adressierbarkeit: Jedes Element muss als eigenständige Entität identifizierbar, referenzierbar und bewertbar sein. Wie fein oder grob die interne Struktur dieses Elements gewählt wird, bleibt eine modellierungstechnische Entscheidung des Forschers und ist nicht Bestandteil der formalen Grammatik selbst.
+	
+	\subsection{Repräsentation komplexer Artefakte}
+	Die einfachste Repräsentation besteht darin, ein gesamtes Paper als einzelne Hypothese $h \in H$ zu modellieren. Dies ist formal vollständig zulässig und kann insbesondere bei der Arbeit mit umfangreichen Literaturbeständen sinnvoll sein. Der Nachteil dieser Kompression besteht jedoch darin, dass der Linter Inkohärenzen nur auf Ebene des gesamten Dokuments identifizieren kann. Wird eine Teilannahme falsifiziert, ist nicht mehr nachvollziehbar, welche konkrete Argumentationskomponente betroffen ist.
+	
+	Für detailliertere Analysen kann dieselbe Publikation schrittweise in mehrere Hypothesen zerlegt werden. Das Paper wird dabei zerlegt. Einzelne Kapitel, Argumente oder Schlussfolgerungen können in eigenständige Hypothesen $h_1,\dots,h_n$, deren Abhängigkeiten explizit modelliert werden können, aufgeteilt werden. Ein wissenschaftliches Paper kann dann als Quelle formaler Entitäten betrachtet werden, aus der Definitions ($D$), Observations ($O$) und Hypotheses ($H$) extrahiert werden. Die Wahl der Granularität ist dabei kein Bestandteil der Grammatik selbst, sondern eine modellierungstechnische Entscheidung des Forschers. Ein komplexes Artefakt kann zunächst als einzelne Hypothese eingeführt und erst bei Bedarf iterativ zerlegt werden. Der ursprüngliche Paper-Knoten bleibt dabei als historischer Einstiegspunkt erhalten. Diese feinere Auflösung ermöglicht es dem Linter, lokale Widersprüche, Zirkelschlüsse oder fehlerhafte Prämissen gezielt zu identifizieren, ohne die gesamte Publikation pauschal zu entwerten. Dies ist jedoch mit mehrarbeit verbunden und kann das System zumüllen.
 	
 	\section{Dynamik der Erkenntnis}
 	
@@ -238,16 +266,25 @@
 		Unter einer vagen, unterdefinierten Hypothese ist $\Gamma_{\text{gen}}(a,b)$ unendlich groß. Das System befindet sich in epistemischer Sättigung ($\kappa = \infty$) und erfordert axiomatische Einschränkungen ($v(a)=1$), um den Lösungsraum zu beschneiden.
 	\end{itemize}
 	
-	\subsection{Epistemische Partitionierung und exklusive Gruppen}
-	Um einander ausschließende Hypothesen formal zu handhaben, definiert das System eine Familie von \emph{epistemischen Partitionen} $\mathcal{G} \subset \mathcal{P}(H)$. Für jede exklusive Gruppe $G \in \mathcal{G}$ gilt das strikte logische Ausschlussprinzip:
-	\[
-	\forall h_i, h_j \in G \quad \text{mit} \quad i \neq j \implies h_i \land h_j \vdash_A \bot
-	\]
-	Systemisch wird die Erhaltung der Wahrscheinlichkeitsmasse über das \emph{Sättigungs-Axiom} erzwungen:
-	\[
-	\sum_{h \in G} v(h) = 1
-	\]
-	Um unvollständige oder im Diskurs befindliche Hypothesenräume mathematisch abzusichern, führt der Linter automatisch eine Residual-Hypothese $h_\emptyset \in G$ ein. Diese repräsentiert das „epistemische Vakuum“ (das unstrukturierte Unbekannte). Jede valide Wertänderung eines Elements innerhalb von $G$ induziert eine proportionale kompensatorische Verschiebung der verbleibenden Elemente, sodass die Summe stets normiert bleibt.
+	\subsection{Exklusions-Cluster und topologische Partitionierung}
+	
+	Zur Modellierung alternativer Erklärungsansätze und struktureller Unschärfen führt die Architektur eine Meta-Ebene der \emph{Exklusions-Cluster} ein. Sei $\mathcal{C}$ die Menge der exklusiven Hypothesencluster. Ein Cluster $c \in \mathcal{C}$ partitioniert eine Menge von Elementarhypothesen $H_c \subset H$, die sich gegenseitig logisch ausschließen. 
+	
+	Für die mathematische Bewertung dieser Cluster unterscheidet das System strikt zwischen vollständigen und unvollständigen Alternativmengen:
+	
+	\begin{enumerate}
+		\item \textbf{Vollständige Partitionen (Exaktes Entweder-Oder):} Repräsentiert das Cluster ein logisch geschlossenes System, in dem exakt eine der Hypothesen absolut wahr sein muss (Satz vom ausgeschlossenen Dritten, z.\,B. $h_1 \equiv \text{„System ist A“}$ und $h_2 \equiv \text{„System ist nicht A“}$), ist die Summe der Validitäten strikt auf $1$ fixiert:
+		\[
+		\sum_{h \in H_c} v(h) = 1
+		\]
+		
+		\item \textbf{Unvollständige Partitionen (Partielle Exklusion):} Beschreibt das Cluster hingegen sich gegenseitig ausschließende, aber nicht erschöpfende Merkmale (z.\,B. $h_1 \equiv \text{„Das Objekt ist rot“}$ und $h_2 \equiv \text{„Das Objekt ist grün“}$), kann der wahre Zustand außerhalb dieser Auswahl liegen (z.\,B. blau). In diesem Fall ist die Summe nach oben beschränkt, kann jedoch kleiner als $1$ sein:
+		\[
+		\sum_{h \in H_c} v(h) \le 1
+		\]
+	\end{enumerate}
+	
+	Der Linter behandelt die Elemente innerhalb von $H_c$ als implizit negativ miteinander gekoppelt. Steigt die Validität $v(h_i)$ einer spezifischen Hypothese durch den Einstrom stützender Evidenzen oder komplementärer Argumente, erzwingt diese Randbedingung eine mathematische Devaluation der konkurrierenden Hypothesen. Im Falle einer vollständigen Partition führt die absolute Falsifikation aller Alternativen bis auf eine zwingend zur maximalen Validierung ($v=1$) der verbleibenden Hypothese. Dadurch wird der Generator gezwungen, den Suchraum entlang sauber definierter, orthogonaler Bruchlinien zu partitionieren.
 	
 	\subsection{Die epistemische Inferenzmatrix und Prämisse-Propagation}
 	Die strukturelle und logische Abhängigkeit von Hypothesen untereinander wird über eine gerichtete Assoziationsmatrix $M_A$ der Dimension $|H| \times |H|$ kodiert. Ein Eintrag $M_A[i, j] = \omega \in [0, 1]$ definiert das Gewicht, zu dem die Validität der Hypothese $h_i$ auf der Prämisse aufbaut, dass $h_j$ wahr ist ($h_i \leftarrow h_j$).
@@ -258,8 +295,7 @@
 	\]
 	Bricht eine fundamentale Basisannahme ein, so kollabiert der maximal zulässige Validitätskorridor aller darauf aufbauenden theoretischen Abstraktionen automatisch entlang des gerichteten Inferenzgraphen.
 	
-	\subsection{Der iterative Zyklus: Charakterisierung von Transitionen und Zuständen}
-	Um den iterativen Prozess formal zu fassen, unterscheiden wir zwischen den abstrakten Kategorien $\mathcal{C}$ und den zeitabhängigen Mengen der instanziierten Elemente im Systemgraphen. Wir definieren das globale System zum diskreten Zeitpunkt $t$ als das Tupel der aktuell existierenden Teilmengen: $E_t = (\mathfrak{S}_t, \mathfrak{O}_t, \mathfrak{H}_t)$, wobei $\mathfrak{S}_t, \mathfrak{O}_t, \mathfrak{H}_t \subset \mathbb{W}_{\text{pot}}$ und für die Axiome gilt $A \subseteq \mathfrak{H}_t$ mit $v(a) = 1$.
+	\subsection{Non-destruktive Fehlerbehandlung durch Angriffsrelationen:} Da das System einem strengen Append-Only-Paradigma folgt (kein Löschen von Dateien), erfordert die Handhabung falsifizierter oder inkohärenter Hypothesen einen mathematischen Lösungsansatz. Wird durch den Linter ein Fehler im Graphen aufgedeckt, reagiert der Generator mit neuen Hypothesen usw die Angriffsrelationen zu dem fehlerhaften Element haben. Anstatt eine fehlerhafte Hypothese zu entfernen, wird ein neues Element generiert, das einen formalen Angriff auf die inkohärente Hypothese ausführt und deren Validitätswert heruntersetzt. Die "falsche" Hypothese bleibt als warnendes Artefakt im System erhalten.
 	
 	Löschen von Knoten ist streng verboten (Wahrung der Historizität). Die Systemmengen wachsen streng monoton: $\mathfrak{X}_{t+1} \supseteq \mathfrak{X}_t$. Anstelle einer Entitätslöschung bei Falsifikation sinkt der zugewiesene Wert einer Hypothese gegen Null ($v(h) \to 0$). Zudem generiert das System eine dynamische Angriffsrelation $\mathcal{R}_t \subseteq \mathfrak{H}_t \times \mathfrak{H}_t$. Ein mathematischer Angriff verringert den Wert der angegriffenen Hypothese in Abhängigkeit vom Wert des Angreifers.
 	
@@ -304,18 +340,33 @@
 	
 	Diese schlagartige algebraische Resolution beschreibt formell den Prozess, der wissenschaftshistorisch als revolutionärer Paradigmenwechsel bekannt ist: Ein plötzlicher topologischer Graphenkollaps und die rapide Umverteilung des epistemischen Gewichts über das gesamte Hypothesenkonstrukt.
 	
+	\subsection{Typentheoretische Fundierung und der Curry-Howard-Isomorphismus}
+	
+	Um die strukturelle Stringenz von \emph{TrigBiPy} gegenüber rein statistischen, unstrukturierten Textgeneratoren abzugrenzen, bietet der Curry-Howard-Isomorphismus das fundamentale theoretische Fundament. Im Rahmen dieser Korrespondenz wird jede epistemische Entität innerhalb des Systems – insbesondere die Definitionen ($D$) und Hypothesen ($H$) – nicht als bloßer Textknoten, sondern als ein formaler Typ interpretiert. Der Prozess der logischen Inferenz, bei dem der Generator bestehende Aussagen zu neuen Argumentationsketten verknüpft, entspricht somit exakt der Konstruktion von Termen (Programmen), die diesen Typen genügen.
+	
+	Da informeller Prosatext inhärent vage ist und sich einer rigiden Syntax entzieht, fungiert diese typentheoretische Interpretation in empirischen Diskursen primär als starke strukturelle Analogie. Das System erzwingt hier eine formale Disziplinierung der Argumentation, die sich dem Verhalten funktionaler Typsysteme annähert. 
+	
+	Sobald das Framework jedoch z.B. in den in \ref{math} beschriebenen mathematisch-axiomatischen Modus wechselt, transformiert sich diese Analogie in einen mathematischen Beweis: Die Synthese eines fehlerfreien Beweispfades durch den Generator entspricht im Sinne von Curry-Howard exakt der Instanziierung eines validen Programms, dessen Typsicherheit durch den als Proof-Assistant (z.\,B. Lean4) agierenden Linter garantiert wird. Dadurch wird epistemische Validität direkt mit computationaler Korrektheit gleichgesetzt.
+	
 	\subsection{Kategorientheoretische Formalisierung und Attraktoren}
-	Um die strukturellen Eigenschaften der Wissensdynamik formell exakt zu fassen, modellieren wir TrigBiPy als eine gewichtete Kategorie $\mathcal{E}$, innerhalb derer Erkenntnis als iterativer Konvergenzprozess durch epistemische Endofunktoren abgebildet wird.
+	Um die strukturellen Eigenschaften der Wissensdynamik formell exakt zu fassen, modellieren wir \emph{TrigBiPy} selbst als eine gewichtete Kategorie $\mathcal{E}$, innerhalb derer Erkenntnis als iterativer Konvergenzprozess durch epistemische Endofunktoren abgebildet wird.
 	
 	\begin{itemize}
-		\item \textbf{Objekte ($Ob(\mathcal{E})$):} Die fundamentalen Kategorien $\mathcal{C} = \{S, O, H\}$ fungieren als formale Objekte im kategorientheoretischen Sinne. Eine spezifische Instanziierung des Systemgraphen zu einem Zeitpunkt $t$ ist ein Morphismennetzwerk zwischen diesen Objekten.
+		\item \textbf{Objekte ($Ob(\mathcal{E})$):} Die fundamentalen Kategorien $\mathcal{C}$ fungieren als formale Objekte im kategorientheoretischen Sinne. Eine spezifische Instanziierung des Systemgraphen zu einem Zeitpunkt $t$ ist ein Morphismennetzwerk zwischen diesen Objekten.
 		\item \textbf{Morphismen ($Hom(X, Y)$):} Jeder bewusste Erkenntnisschritt entspricht einem Morphismus. Die epistemische Matrix $M_\pi$ definiert dabei die Menge aller legalen strukturellen Übergänge in $\mathcal{E}$.
 	\end{itemize}
 	
-	\textbf{Der unvollständige Pullback als algebraische Krümmung:}
 	Wenn zwei getrennte hypothesengeladene Beobachtungen $o_1$ und $o_2$ im Erkenntnisprozess nicht widerspruchsfrei unter einem gemeinsamen Objekt vereint werden können, kommutiert das entsprechende Diagramm nicht. Das Scheitern der universellen Pullback-Eigenschaft drückt sich direkt im Hypothesenraum aus: Die Unvereinbarkeit erzeugt zwei konkurrierende Knoten $h_1, h_2$, deren Überlappung ein direktes Maß für die \emph{epistemische Krümmung} des Raumes darstellt. Die Krümmung ist hierbei direkt proportional zur Systementropie $H_E$. Der mathematische Linter zwingt das System formell dazu, den globalen Graphen solange algebraisch umzuformen, bis die Krümmung minimiert und die kategoriale Kommutativität näherungsweise wiederhergestellt ist.
 	
-	\section{Angewandte Implementierung und Knowledge-as-Code}
+	\section{Anwendungen}
+	
+	\subsection{Anwendungsfall: Axiomatische Systeme und reine Mathematik} \label{math}
+	
+	Die Universalität der epistemischen Grammatik zeigt sich darin, dass sie nicht auf empirische Wissenschaftsdiskurse beschränkt ist, sondern den axiomatischen Aufbau der reinen Mathematik als formalen Grenzfall abbildet. Um diesen Anwendungsfall zu operationalisieren, wird das System initial ausschließlich mit einer Menge formaler Axiome – beispielsweise den Axiomen der Zermelo-Fraenkel-Mengenlehre ($\mathsf{ZFC}$) – instanziiert. In diesem Szenario agiert der Generator als rein deduktive Engine, die mathematische Sätze und Beweisketten generiert.
+	
+	Der Linter übernimmt hierbei die Rolle eines automatischen Theorembeweisers; architektonisch lässt sich dies über eine Schnittstelle zu bestehenden Lean4- oder Coq-Instanzen realisieren. Da mathematische Deduktionen per Definition fehlerfrei sind, operiert das System in diesem Modus mit maximalen Konfidenzwerten ($v = 1$). 
+	
+	Dieser Anwendungsfall demonstriert die Vollständigkeit des Frameworks: Da mathematische Wahrheit als widerspruchsfreie Kohärenz innerhalb eines axiomatischen Systems definiert ist, kollabiert die epistemische Entropie $H_E$ bei korrekten Beweisen gegen Null. Damit beweist TrigBiPy, dass es die gesamte Bandbreite menschlicher Erkenntnis – von der harten, strukturprägenden Apriori-Mathematik bis hin zur fehlbaren, aposteriorischen empirischen Forschung – innerhalb einer einzigen, einheitlichen algorithmischen Architektur abbilden kann.
 	
 	\lstset{
 		language=Python,
@@ -349,44 +400,15 @@
 	\subsection{TrigBiPy als Framework für AGI}
 	Das aktuelle Paradigma der Künstlichen Intelligenz (primär LLMs) basiert auf der probabilistischen Vorhersage des nächsten Tokens auf rein oberflächlicher semantischer Ebene. Diese Systeme scheitern an echter, tiefer Erkenntnisgewinnung.
 	
-	TrigBiPy bietet hier einen völlig neuen Lösungsansatz. Kleine, lokale LLMs dienen lediglich als intuitive Übersetzer und heuristische Vorschlagsgeneratoren für die Operationen der epistemischen Grammatik. Der harte Compiler prüft die mathematischen Angriffsrelationen, berechnet die epistemische Entropie $H_E$ und erzwingt Typensicherheit.
+	TrigBiPy bietet hier einen völlig neuen Lösungsansatz. Kleine, lokale LLMs dienen lediglich als intuitive Übersetzer und heuristische Vorschlagsgeneratoren für die Operationen der epistemischen Grammatik. Der harte Compiler prüft die mathematischen Angriffsrelationen, berechnet die epistemische Entropie $H_E$ und erzwingt Typensicherheit. 
 	
-	\textbf{Incoherence is all you need.} Inkohärenz ist der Motor der Erkenntnis. In einer hybriden AGI-Architektur übernimmt das neuronale Netz die Intuition (Vorschläge für Kanten und neue Hypothesen), während der TrigBiPy-Graph die harte logische Konsistenz und die algebraische Optimierung des Hypothesenraums erzwingt. Halluzinationen werden somit zu produktiven Hypothesen-Vorschlägen (strukturellen Inkohärenzen) degradiert, die das System im Zuge der Entropieminimierung automatisch evaluiert, gewichtet oder devaluiert.
+	\textbf{Incoherence is all you need.} Inkohärenz ist der Motor der Erkenntnis. Die Transformation des Modells in einen aktiven AGI-Agenten ist lediglich ein Optimierungsproblem bzgl. der Inkoheränzabnahme $\Delta K = H_E(E_t) - H_E(E_{t+1})$.
 	
-\section{ERWEITERUNGEN}
-\subsection{Curry-Howard-Isomorphismus.} Um wissenschaftstheoretisch zu untermauern, dass das System mehr tut als nur unstrukturierten Text zu generieren, wird der Curry-Howard-Isomorphismus als theoretischer Rahmen betrachtet. Jede Entität im System repräsentiert einen formalen Typ. Logische Schlussfolgerungen und das Zusammenfügen von Aussagen zu neuen Argumenten entsprechen der Konstruktion von Programmen. Weil Prosatext keine formellen Ausdrücke sind kann man es in dem Fall nicht beweisen, aber es bildet eine Analogie. Wenn Mathematik in TrigBiPy betrieben wird, dann lässt sich dies sogar formell beweisen.
-
-\subsection{Die funktionale Entkopplung von Generator und Linter:} Die Architektur des Systems wird in zwei klar getrennte, asynchrone Instanzen unterteilt:
-\begin{itemize}
-\item Der Generator: Seine einzige Aufgabe ist es, kontinuierlich an neuen Elementen zu arbeiten, die dem System hinzugefügt werden können. Er konstruiert neue Hypothesen, Definitions oder Ableitungen und knüpft die logischen Eltern-Relationen. Er generiert das Material, das den Wissensgraphen wachsen lässt.
-\item Der Linter: Er fungiert ausschließlich als Diagnose-Werkzeug. Seine Aufgabe ist es, das bestehende System auf Inkohärenz zu scannen. Findet er logische Widersprüche, Verletzungen der epistemischen Grammatik oder Zirkelschlüsse, so gibt er entsprechende Fehlerberichte aus. Er modifiziert die Dateien nicht selbst, sondern markiert lediglich die aufgedeckten Konflikte im Graphen.
-\end{itemize}
-
-\subsection{Non-destruktive Fehlerbehandlung durch Angriffsrelationen:} Da das System einem strengen Append-Only-Paradigma folgt (kein Löschen von Dateien), erfordert die Handhabung falsifizierter oder inkohärenter Hypothesen einen mathematischen Lösungsansatz. Wird durch den Linter ein Fehler im Graphen aufgedeckt, reagiert der Generator mit neuen Hypothesen usw die Angriffsrelationen zu dem fehlerhaften Element haben. Anstatt eine fehlerhafte Hypothese zu entfernen, wird ein neues Element generiert, das einen formalen Angriff auf die inkohärente Hypothese ausführt und deren Validitätswert heruntersetzt. Die "falsche" Hypothese bleibt als warnendes Artefakt im System erhalten.
-
-\subsection{Anwendungsbeispiel:} Das formale Bootstrapping. Um die anwendbarkeit der epistemischen Grammatik zu demonstrieren, wird im Paper ein folgendes skizziert: Initiiert man das System lediglich mit einem Satz formaler Axiome (wie der Zermelo-Fraenkel-Mengenlehre),kann der Generator als reine formale Engine Mathematik betreiben. Der Linter könnte hier sogar geforkter Code von Lean4 oder ähnlich sein. Dies zeigt, dass TrigBiPy nicht nur empirische Wissenschaftsdiskurse, sondern auch den axiomatischen Aufbau der reinen Mathematik algorithmisch abbilden kann. Alles was von Menschen erkannt werden kann, passt in das Framework.
-
-\subsection{Validity:} Der Wahrheitswert einer Aussage ist kein starrer Wert, der einfach in der Datei festgeschrieben steht, sondern wird dynamisch durch den Linter berechnet. Stattdessen gibt der Autor bei jeder neuen Schlussfolgerung an, wie sicher er sich bei diesem logischen Schritt ist (Konfidenzwert). Bei einer mathematischen Deduktion liegt dieser Wert bei 1; bei logischen oder induktiven Argumenten ist er entsprechend niedriger, beispielsweise bei 0,9. Auch für kreative Vermutungen gibt es Raum: Wenn eine Idee plausibel erscheint, aber noch unbewiesen ist, kann der Autor einen vorläufigen Wert (z. B. 0,5) vergeben. So erlaubt das System eine explorative Forschung, ohne den Autor durch ein zu enges formales Korsett einzuschränken. Aus der Tatsache, dass viele soziale Säugetiere in komplexen Gruppenverbänden leben ($h_1$) und dass diese Gruppen nur bei hoher interner Stabilität langfristig überleben ($h_2$), könnte dem Forscher einfallen, dass reziproke Altruismus-Mechanismen (Hilfeleistung auf Gegenseitigkeit) als evolutionäres Korrektiv zur Stabilisierung von Gruppengrößen entstanden sind ($h_3$). Da er sich bei dieser Verknüpfung noch unsicher ist, ob die Kausalität direkt ist oder andere Faktoren wie Umweltressourcen eine Rolle spielen, vergibt er bei der Erstellung des neuen Elements für $h_3$ einen Konfidenzwert von 0.5. Dieses Vorgehen verdeutlicht, dass TrigBiPy kein rein formelles Korsett darstellt, sondern ein exploratives Werkzeug: Der Forscher markiert für das System explizit, dass hier ein vielversprechender Zusammenhang vermutet wird, dessen Beweislast jedoch noch gering ist. Mathematisch wird dieser Wert in die Inferenzmatrix eingespeist und bleibt dem Linter sowie künftigen Iterationen als Ausgangspunkt erhalten. Erweist sich die Hypothese durch weitere Quellen als haltbar, kann der Konfidenzwert in einem neuen Schritt angehoben werden; bei widersprüchlichen Evidenzen hingegen greifen die mathematischen Angriffsrelationen, welche die Validität der Vermutung devaluieren. Somit wird die menschliche Intuition als ‚Generator für Konfidenz‘ integraler Bestandteil der algorithmischen Wissensrepräsentation.
-
-\subsection{Epistemische Granularität und nicht-atomare Erkenntnisobjekte}
-
-Viele Systeme des Personal Knowledge Managements, insbesondere atomistische Ansätze wie der Zettelkasten, basieren auf der Annahme, dass Erkenntnis sich letztlich auf eine Menge möglichst kleiner, isolierter Gedanken reduzieren lässt. TrigBiPy macht eine solche Annahme ausdrücklich nicht. 
-
-Die epistemische Grammatik operiert auf den Kategorien der Entitäten und ihren Relationen, nicht auf einer fest vorgeschriebenen semantischen Größe der repräsentierten Inhalte. Ein Element kann daher eine einzelne Aussage, ein Argument, ein mathematischer Beweis, ein wissenschaftliches Paper, ein Buch oder sogar ein umfassendes Forschungsprogramm sein. Für die formale Verarbeitung ist nicht die Länge oder Komplexität eines Elements entscheidend, sondern ausschließlich seine Einbettung in das Netzwerk epistemischer Relationen. Das System folgt somit keinem Dogma epistemischer Atomisierung, sondern einem Prinzip progressiver Explikation: Nur dort, wo zusätzliche Auflösung einen tatsächlichen Erkenntnisgewinn verspricht, wird die interne Struktur eines Artefakts weiter formalisiert.
-
-Der Linter bewertet die Elemente nicht als solche, sondern die Verbindungen zwischen ihnen: Die erlaubtheit einer epistemischen Operation, Abhängigkeiten, Angriffsrelationen, Inferenzketten, Konfidenzwerte usw. Damit wird Erkenntnis nicht auf atomare Notizen reduziert. Stattdessen erlaubt das System die Verwendung nicht-atomarer Erkenntnisobjekte beliebiger Größe, sofern diese als referenzierbare Elemente innerhalb der epistemischen Grammatik auftreten können.
-
-Diese Eigenschaft ist für eine universelle Methode der Erkenntnisgewinnung von zentraler Bedeutung. In realen Forschungsprozessen existieren zahlreiche Konzepte, deren Bedeutung erst aus dem Zusammenspiel vieler Aussagen entsteht und die sich nicht verlustfrei in voneinander unabhängige Atome zerlegen lassen. Eine erzwungene Atomisierung führt häufig zu einer Fragmentierung des Wissensbestandes und erhöht die organisatorische Komplexität, ohne einen entsprechenden epistemischen Mehrwert zu erzeugen. Oft führt dies sogar zu einer stagnierung der eigentlichen Forschungsarbeit, da der forscher sich "verzettelt".
-
-TrigBiPy ersetzt daher das Prinzip der epistemischen Atomisierung durch das schwächere Prinzip der epistemischen Adressierbarkeit: Jedes Element muss als eigenständige Entität identifizierbar, referenzierbar und bewertbar sein. Wie fein oder grob die interne Struktur dieses Elements gewählt wird, bleibt eine modellierungstechnische Entscheidung des Forschers und ist nicht Bestandteil der formalen Grammatik selbst.
+	\subsection{Diskussion und Ausblick: Die wissenschaftliche Methode}
 	
-\subsection{Repräsentation komplexer Artefakte}
-Die einfachste Repräsentation besteht darin, ein gesamtes Paper als einzelne Hypothese $h \in H$ zu modellieren. Dies ist formal vollständig zulässig und kann insbesondere bei der Arbeit mit umfangreichen Literaturbeständen sinnvoll sein. Der Nachteil dieser Kompression besteht jedoch darin, dass der Linter Inkohärenzen nur auf Ebene des gesamten Dokuments identifizieren kann. Wird eine Teilannahme falsifiziert, ist nicht mehr nachvollziehbar, welche konkrete Argumentationskomponente betroffen ist.
-
-Für detailliertere Analysen kann dieselbe Publikation schrittweise in mehrere Hypothesen zerlegt werden. Das Paper wird dabei zerlegt. Einzelne Kapitel, Argumente oder Schlussfolgerungen können in eigenständige Hypothesen $h_1,\dots,h_n$, deren Abhängigkeiten explizit modelliert werden können, aufgeteilt werden. Ein wissenschaftliches Paper kann dann als Quelle formaler Entitäten betrachtet werden, aus der Definitions ($D$), Observations ($O$) und Hypotheses ($H$) extrahiert werden. Die Wahl der Granularität ist dabei kein Bestandteil der Grammatik selbst, sondern eine modellierungstechnische Entscheidung des Forschers. Ein komplexes Artefakt kann zunächst als einzelne Hypothese eingeführt und erst bei Bedarf iterativ zerlegt werden. Der ursprüngliche Paper-Knoten bleibt dabei als historischer Einstiegspunkt erhalten. Diese feinere Auflösung ermöglicht es dem Linter, lokale Widersprüche, Zirkelschlüsse oder fehlerhafte Prämissen gezielt zu identifizieren, ohne die gesamte Publikation pauschal zu entwerten. Dies ist jedoch mit mehrarbeit verbunden und kann das System zumüllen.
-
-\subsection{Perspektiven für die theoretische Erweiterung und formale Fundierung}
-
+	TrigBiPy ist kein bloßes Optimierungswerkzeug, sondern mit hoher Wahrscheinlichkeit eine Operationalisierung der universellen wissenschaftlichen Methode. Das Framework löst die historische Dichotomie der Wissenschaftstheorie auf, indem es die abduktive Idee (Peirce), die strikte Falsifikation (Popper) und den revolutionären Paradigmenwechsel (Kuhn) als emergente Eigenschaften eines einzigen mathematischen Prinzips beweist: der globalen Minimierung der epistemischen Entropie $H_E$ auf einem Constraint-Graphen. Wissenschaftlicher Fortschritt wird damit von einem philosophischen Diskurs zu einem berechenbaren Optimierungsproblem.
+	
+\section{Weitere Themen}
 Für eine umfassende wissenschaftliche Einordnung und Vertiefung des theoretischen Fundaments empfiehlt sich jedoch die Berücksichtigung der folgenden Metaebenen und Erweiterungsoptionen:
 
 \begin{itemize}
@@ -415,4 +437,159 @@ Für eine umfassende wissenschaftliche Einordnung und Vertiefung des theoretisch
 	\end{equation}
 	Dies würde die Reduktion epistemischer Entropie bei gleichzeitiger Erhaltung der Erklärungskraft als explizite Zielfunktion etablieren und den Ansatz \textit{"Incoherence is all you need"} formal erhärten.
 \end{itemize}
+\newpage
+
+\begin{thebibliography}{99}
+	
+	\bibitem{235}
+	Sneed, J. D. (1971). 
+	\emph{The Logical Structure of Mathematical Physics}. 
+	Springer, Dordrecht.
+	
+	\bibitem{237}
+	Dung, P. M. (1995). 
+	On the acceptability of arguments and its fundamental role in nonmonotonic reasoning, logic programming and n-person games. 
+	\emph{Artificial Intelligence}, 77(2), 321--357.
+	
+	\bibitem{238}
+	Stegmüller, W. (1979). 
+	\emph{The Structuralist View of Theories: A Possible Analogue of the Bourbaki Programme in Physical Science}. 
+	Springer, Berlin, Heidelberg.
+	
+	\bibitem{240}
+	Moura, L. d., \& Ullrich, S. (2021). 
+	The Lean 4 Theorem Prover and Programming Language. 
+	\emph{International Conference on Automated Deduction}, 625--635. Springer, Cham.
+	
+	\bibitem{241}
+	Bush, V. (1945). 
+	As we may think. 
+	\emph{The Atlantic Monthly}, 176(1), 101--108.
+	
+	\bibitem{242}
+	Nelson, T. H. (1965). 
+	Complex information processing: a file structure for the complex, the changing and the indeterminate. 
+	\emph{Proceedings of the 1965 20th ACM national conference}, 84--100.
+	
+	\bibitem{243}
+	Feyerabend, P. (1975). 
+	\emph{Against Method: Outline of an Anarchistic Theory of Knowledge}. 
+	New Left Books, London.
+	
+	\bibitem{244}
+	Popper, K. (1934). 
+	\emph{Logik der Forschung: Zur Erkenntnistheorie der modernen Naturwissenschaft}. 
+	Julius Springer, Wien.
+	
+	\bibitem{245}
+	Kuhn, T. S. (1962). 
+	\emph{The Structure of Scientific Revolutions}. 
+	University of Chicago Press, Chicago.
+	
+	\bibitem{246}
+	Peirce, C. S. (1931). 
+	\emph{Collected Papers of Charles Sanders Peirce}. 
+	Harvard University Press, Cambridge.
+	
+	\bibitem{247}
+	Carnap, R. (1928). 
+	\emph{Der logische Aufbau der Welt}. 
+	Weltkreis-Verlag, Berlin-Schlachtensee.
+	
+	\bibitem{248}
+	Spivak, D. I. (2014). 
+	\emph{Category Theory for the Sciences}. 
+	MIT Press, Cambridge.
+	
+	\bibitem{249}
+	Biere, A., Heule, M., \& van Maaren, H. (Eds.). (2009). 
+	\emph{Handbook of Satisfiability}. 
+	IOS Press, Amsterdam.
+	
+	\bibitem{250}
+	Wadler, P. (2015). 
+	Propositions as types. 
+	\emph{Communications of the ACM}, 58(12), 75--84.
+	
+	\bibitem{251}
+	De Raedt, L., Kimmig, A., \& Toivonen, H. (2007). 
+	ProbLog: A probabilistic Prolog and its application in bioinformatics. 
+	\emph{IJCAI Proceedings-International Joint Conference on Artificial Intelligence}, 20, 2479.
+	
+	\bibitem{323}
+	Lakatos, I. (1970). 
+	Falsification and the methodology of scientific research programmes. 
+	\emph{Criticism and the Growth of Knowledge}, 91--196.
+	
+	\bibitem{324}
+	Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A. N., ... \& Polosukhin, I. (2017). 
+	Attention is all you need. 
+	\emph{Advances in Neural Information Processing Systems}, 30, 5998--6008.
+	
+	\bibitem{387}
+	Gärdenfors, P. (1988). 
+	\emph{Knowledge in Flux: Modeling the Dynamics of Epistemic States}. 
+	MIT Press, Cambridge.
+	
+	\bibitem{388}
+	Alchourrón, C. E., Gärdenfors, P., \& Makinson, D. (1985). 
+	On the logic of theory change: Partial meet contraction and revision functions. 
+	\emph{Journal of Symbolic Logic}, 50(2), 510--530.
+	
+	\bibitem{390}
+	Ruelle, D. (1989). 
+	\emph{Elements of Differentiable Dynamics and Bifurcation Theory}. 
+	Academic Press, San Diego.
+	
+	\bibitem{396}
+	Mac Lane, S. (1978). 
+	\emph{Categories for the Working Mathematician}. 
+	Springer, New York.
+	
+	\bibitem{397}
+	Hintikka, J. (1962). 
+	\emph{Knowledge and Belief: An Introduction to the Logic of the Two Notions}. 
+	Cornell University Press, Ithaca.
+	
+	\bibitem{398}
+	Howson, C., \& Urbach, P. (2006). 
+	\emph{Scientific Reasoning: The Bayesian Approach}. 
+	Open Court Publishing, Chicago.
+	
+	\bibitem{411}
+	Howard, W. A. (1980). 
+	The formulae-as-types notion of construction. 
+	\emph{To H. B. Curry: Essays on Combinatory Logic, Lambda Calculus and Formalism}, 479--490.
+	
+	\bibitem{428}
+	Grünwald, P. D. (2007). 
+	\emph{The Minimum Description Length Principle}. 
+	MIT Press, Cambridge.
+	
+	\bibitem{433}
+	Li, M., \& Vitányi, P. (2008). 
+	\emph{An Introduction to Kolmogorov Complexity and Its Applications}. 
+	Springer, New York.
+	
+	\bibitem{435}
+	Marcus, G., \& Davis, E. (2020). 
+	\emph{Rebooting AI: Building Artificial Intelligence We Can Trust}. 
+	Pantheon Books, New York.
+	
+	\bibitem{441}
+	Sutskever, I., Vinyals, O., \& Le, Q. V. (2014). 
+	Sequence to sequence learning with neural networks. 
+	\emph{Advances in Neural Information Processing Systems}, 27, 3104--3112.
+	
+	\bibitem{446}
+	Silver, D., Huang, A., Maddison, C. J., Guez, A., Sifre, L., Van Den Driessche, G., ... \& Hassabis, D. (2016). 
+	Mastering the game of Go with deep neural networks and tree search. 
+	\emph{Nature}, 529(7587), 484--489.
+	
+	\bibitem{valiela2001}
+	Valiela, I. (2001). 
+	\emph{Doing Science: Design, Conduct, and Communication of Research}. 
+	Oxford University Press, Oxford.
+	
+\end{thebibliography}
 \end{document}
