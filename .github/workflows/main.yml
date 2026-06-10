@@ -1,31 +1,51 @@
-name: Build LaTeX PDF & Create Release
+name: Build LaTeX PDFs & Create Release
 
 on:
   push:
     branches:
-      - main  # Oder dein Hauptzweig (z. B. master)
+      - main
 
 permissions:
-  contents: write  # ZWINGEND ERFORDERLICH, damit die Action ein Release erstellen darf
+  contents: write
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Compile LaTeX
+      - name: Read versions
+        id: versions
+        run: |
+          DE_VERSION=$(grep "^paper_de:" version | cut -d':' -f2 | xargs)
+          EN_VERSION=$(grep "^paper_en:" version | cut -d':' -f2 | xargs)
+
+          echo "de_version=$DE_VERSION" >> $GITHUB_OUTPUT
+          echo "en_version=$EN_VERSION" >> $GITHUB_OUTPUT
+
+      # Compile German version
+      - name: Compile LaTeX (German)
         uses: xu-cheng/latex-action@v3
         with:
-          root_file: paper.tex
+          root_file: paper_de.tex
           args: -pdf -interaction=nonstopmode -halt-on-error
 
-      # Schritt 1: PDF in den gewünschten Namen umbenennen
-      - name: Rename PDF file
-        run: mv paper.pdf incoherence_is_all_you_need.pdf
+      # Compile English version
+      - name: Compile LaTeX (English)
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: paper_en.tex
+          args: -pdf -interaction=nonstopmode -halt-on-error
 
-      # Schritt 2: Das GitHub Release erstellen und die Datei anhängen
+      # Rename PDFs including version number
+      - name: Rename PDFs
+        run: |
+          mv paper_de.pdf "incoherence_is_all_you_need_de_v${{ steps.versions.outputs.de_version }}.pdf"
+          mv paper_en.pdf "incoherence_is_all_you_need_en_v${{ steps.versions.outputs.en_version }}.pdf"
+
+      # Create GitHub release and upload PDFs
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
@@ -33,4 +53,6 @@ jobs:
           name: Release v${{ github.run_number }}
           draft: false
           prerelease: false
-          files: incoherence_is_all_you_need.pdf
+          files: |
+            incoherence_is_all_you_need_de_v${{ steps.versions.outputs.de_version }}.pdf
+            incoherence_is_all_you_need_en_v${{ steps.versions.outputs.en_version }}.pdf

@@ -1,4 +1,4 @@
-# Incoherence is all you need
+# Incoherence is all you need.
 
 TrigBiPy ist ein formales epistemisches Framework zur algorithmischen Strukturierung und dynamischen Optimierung von Erkenntnisprozessen in kontinuierlichen Hypothesenräumen. Im Gegensatz zu klassischen Ansätzen des Personal Knowledge Management oder rein probabilistischen Modellen der künstlichen Intelligenz interpretiert das System Wissensgenerierung als einen strikt kontrollierten Prozess der Inkohärenzreduktion, in dem logische Spannungen nicht eliminiert, sondern als primäre treibende Ressource operationalisiert werden.
 

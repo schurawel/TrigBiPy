@@ -1,7 +1,6 @@
-# Ignoriere alle lokalen LaTeX-Generierungsprodukte in diesem Ordner
-paper.aux
-paper.log
-paper.out
-paper.toc
-paper.synctex.gz
-paper.pdf
+*.aux
+*.log
+*.out
+*.toc
+*.synctex.gz
+*.pdf

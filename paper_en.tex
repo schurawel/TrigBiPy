@@ -1,0 +1,603 @@
+\documentclass[11pt, a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{geometry}
+\geometry{a4paper, margin=2.5cm}
+
+\usepackage{microtype}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{listingsutf8}
+
+\newtheorem{definition}{Definition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{axiom}{Axiom}
+\newtheorem{lemma}{Lemma}
+
+\begin{document}
+	\pagenumbering{roman}
+	\begin{titlepage}
+		\centering
+		\vspace*{4cm}
+		
+		{\scshape\Large Computational Epistemics\par}
+		\vspace{1.5cm}
+		
+		{\huge\bfseries Incoherence is all you need.\par}
+		\vspace{1.0cm}
+		
+		{\Large\itshape TrigBiPy: A Formal Epistemic Grammar for Algorithm-Driven Knowledge Acquisition over Continuous Hypothesis Spaces\par}
+		\vspace{3cm}
+		
+		{\Large\textbf{Jason A. Schurawel}\par}
+		\vfill
+		
+		{\large \today\par}
+	\end{titlepage}    
+	\pagenumbering{arabic}
+	
+	\newpage
+	\tableofcontents
+	\newpage
+	
+	\renewcommand{\abstractname}{Abstract}
+	\addcontentsline{toc}{section}{A\quad Abstract}
+	\begin{abstract}
+		\emph{TrigBiPy} is a formal epistemic framework for the algorithmic structuring and dynamic optimization of epistemic processes in continuous hypothesis spaces. In contrast to classical approaches to personal knowledge management or purely probabilistic models of artificial intelligence, the system interprets knowledge generation as a strictly controlled process of incoherence reduction, in which logical tensions are not eliminated but operationalized as a primary driving resource.
+		
+		The architecture separates the epistemic process into two asynchronous instances: a generative generator for the expansion of the hypothesis space and a formal linter for the continuous evaluation of epistemic consistency. Consequently, knowledge is modeled not as a static archive but as a compilable knowledge-as-code structure, whose elements are interconnected via categorical ontologies, validity values, and directed inference relations.
+		
+		The central contributions of the framework are (i) the formalization of epistemic categories as structured type spaces, (ii) the introduction of a continuous validity logic for the gradual evaluation of hypotheses, (iii) the definition of epistemic entropy as a global optimization metric, and (iv) the modeling of knowledge acquisition as a minimization process of logical incoherence.
+		
+		Thus, TrigBiPy conceptualizes scientific discovery as a dynamic constraint-satisfaction problem on a weighted hypothesis graph and provides a unified formal foundation for the integration of empirical research, logical deduction, and algorithmic inference.
+	\end{abstract}
+	
+	\section{Introduction: The Structural Crisis of Knowledge Representation}
+	
+	Historical and contemporary concepts of \emph{augmented intelligence}—from Vannevar Bush's visionary \emph{Memex} and Ted Nelson's \emph{Xanadu} to modern, atomistic knowledge management systems such as the Zettelkasten—suffer from a fundamental structural defect \cite{241}. They are based on the false assumption that knowledge acquisition is a monotonic accumulation of information and its free, associative linking \cite{241, 242, 390}. In practice, this approach inevitably leads to an unstructured semantic swamp \cite{242}. If every thought can be linked to any other, the system lacks a formal verification instance; it collapses under the cognitive load of its own complexity \cite{241, 242}. The attempt to solve this problem by formulating increasingly specific, content-dependent research methodologies proves to be a methodical dead end \cite{243}.
+	
+	The framework presented here, \emph{TrigBiPy}, breaks radically with this paradigm. It postulates that knowledge acquisition is not a disordered creative act, but a strictly controlled mathematical dynamic of incoherence reduction within a weighted, continuous hypothesis space \cite{235, 237, 244}. \emph{TrigBiPy} does not generate autonomous truth, but rather enforces a formal, computational discipline of thought \cite{245, 411}. It conceptualizes knowledge representation not as a static archive (Personal Knowledge Management) but as a compilable \emph{knowledge-as-code} architecture whose inherent logical tensions are algorithmically measurable and optimizable \cite{235, 238, 396, 428}. 
+	
+	Within \emph{TrigBiPy}, contradictions and logical conflicts are not excluded as system errors but are operationalized as the primary computational resource (the gradient) of the epistemic process: \emph{Incoherence is all you need} \cite{238, 397, 398, 441}. Through this functional separation, the epistemic process is transformed from a purely philosophical discourse into a computable, formal optimization problem. To computationally isolate and control this dynamic, the system architecture partitions the epistemic process into two strictly separate, asynchronous instances \cite{246}:
+	
+	\begin{itemize}
+		\item \textbf{The Generator (Heuristic Synthesis):} Its sole task is the continuous expansion of the knowledge graph \cite{246, 248}. Operating as a purely generative engine (driven by human intuition or as a heuristic over Large Language Models), it adds new definitions, observations, or hypotheses to the system and establishes the directed, logical parent relations \cite{247, 324, 435}.
+		\item \textbf{The Linter (Formal Diagnosis):} It functions as the system's incorruptible mathematical compiler \cite{238, 249}. Its objective is the permanent scanning of the graph for logical incoherences, circular reasoning, and violations of the epistemic grammar \cite{249, 250}. The linter never manipulates data itself; instead, it exposes information-theoretic tensions and devalues the validity of conflicting hypotheses via mathematical attack relations \cite{238, 251, 323, 387, 388}.
+	\end{itemize}
+	
+	Crucial to understanding this framework is that TrigBiPy does not attempt to achieve absolute, sterile perfection. The system is not intended to establish a methodical straightjacket that stifles the researcher's creative intuition or forces it into bureaucratic formalisms.
+	
+	At the same time, TrigBiPy distances itself sharply from systems that merely transform semantic noise into other noise (as is the case with unguided language models). Instead, the mathematical grammar captures the core of what happens intuitively and often unconsciously in our brains: the continuous, delicate balancing of conjectures, observations, and contradictions. The system does not force the user into perfect prior knowledge, but rather provides a dynamic scaffolding structure that grows organically with the fuzziness of human thought, while algorithmically capturing it and making it verifiable.
+	
+	\section{Epistemic Operations}
+	
+	\subsection{Categorical Ontology and Structural Exclusion}
+	The system operates with four fundamental epistemic \textbf{categories} ($\mathcal{C} = \{S, O, H, D\}$). Concrete instances are denoted by lowercase letters: $s \in S$, $o \in O$, $h \in H$, $d \in D$.
+	To formally capture the iterative process, we distinguish between the abstract categories $\mathcal{C}$ and the time-dependent sets of instantiated elements in the system graph. We define the global system at a discrete point in time $t$ as the tuple of currently existing subsets: $E_t = (\mathfrak{S}_t, \mathfrak{O}_t, \mathfrak{H}_t, \mathfrak{D}_t)$, where $\mathfrak{S}_t, \mathfrak{O}_t, \mathfrak{H}_t, \mathfrak{D}_t \subset \mathbb{W}_{\text{pot}}$ and for the axioms $\mathfrak{A}_t \subseteq \mathfrak{H}_t$, which belong to category H.
+	
+	\begin{table}[ht]
+		\centering
+		\begin{tabular}{l c p{10cm}}
+			\toprule
+			\textbf{Category} & \textbf{Symbol} & \textbf{Description} \\
+			\midrule
+			\textbf{Source} & $S$ & Uninterpreted raw material (e.g., primary texts, unstructured data). Sources possess no inherent meaning within the system. \\
+			\addlinespace
+			\textbf{Observation} & $O$ & An interpreted selection. Every observation is hypothesis-laden; an interpretation-free perception does not exist. Confidence values $u(o) \in [0, 1]$ are assigned, which quantify a potential observation error with respect to the underlying hypotheses under which the observation occurred. \\
+			\addlinespace
+			\textbf{Hypothesis} & $H$ & An interpretive model or a structuring statement. Each hypothesis is assigned a real-valued validity metric $v(h) \in [0, 1]$. For axioms, $v(a) = 1$ holds.\\
+			\addlinespace
+			\textbf{Definition} & $D$ & A formal ontology. Terms here are not necessarily defined by static continuous text, but are semantically encoded with category-theoretic constructs as needed to precisely map their relations within the system. \\
+			\bottomrule
+		\end{tabular}
+		\caption{The four fundamental epistemic categories in TrigBiPy.}
+	\end{table}
+	
+	The architecture establishes a universal category of the hypothesis ($H$). A classical "theory" can be described therein as a hypothesis with a high epistemic value ($v(h) \to 1$), while an open scientific field of tension (a discourse) is manifested as a state in which competing, mutually exclusive hypotheses exhibit undecided values ($v(h_1) \approx v(h_2) \approx 0.5$).
+	
+	\textbf{Axioms ($A$)} do not form a separate class; instead, as immutable elements, they are a subset of hypotheses ($A \subseteq H$) for which a fixed, maximum value is permanently defined ($v(a) = 1$, \texttt{mutable = false}).
+	
+	\textbf{Exclusion of Static Research Products:} Traditional endpoints, known as final research products in Personal Knowledge Management (PKM), are completely excluded from the formal epistemic grammar in TrigBiPy. The finished research product must be strictly separated from the actual, iterative process of knowledge acquisition. The system demands pure dynamics within the hypothesis space ($H$). Final results are merely communicative export artifacts that no longer generate any structural epistemic surplus within the system algebra itself.
+	
+	\subsection{The Invariants of the Epistemic Grammar}
+	\begin{itemize}
+		\item \textbf{Law of Uncreatability}: A source ($s \in S$) can never be the product of a system operation.
+		\item \textbf{Law of Blind Data}: Sources ($S$) cannot interact directly with each other ($S \times S \to \emptyset$).
+		\item \textbf{Law of Binary Reduction and Commutativity}: The order of operands does not alter the final epistemic state. All complex transitions are reducible to primitive binary operators.
+	\end{itemize}
+	
+	\subsection{The Mapping Space and the Validity Matrix}
+	We formalize the possibility space of knowledge acquisition. Let $\mathcal{C} = \{S, O, H\}$ be the set of epistemic categories.
+	
+	\begin{definition}[Epistemic Possibility Space]
+		Let $\pi: \mathcal{C} \times \mathcal{C} \to \mathcal{P}(\mathcal{C})$ be the mapping function of the epistemic possibility space, which assigns a subset of permissible successor categories to each pair of categories.
+	\end{definition}
+	
+	The permissible projections of the possibility space can be mapped onto the following symmetric matrix representation $M_\pi$ for the ordered basis $(S, O, H)$:
+	
+	\[
+	M_\pi = \begin{pmatrix}
+		\emptyset & \{O\} & \{O\} \\
+		\{O\} & \{H\} & \{H\} \\
+		\{O\} & \{H\} & \{H\}
+	\end{pmatrix}
+	\]
+	
+	The matrix $M_\pi$ reveals the formal and operational consistency of the system grammar. It enforces a strict cascade in the epistemic process: 
+	\begin{itemize}
+		\item The interaction of raw material with an interpretive instance ($S \times O$ and $S \times H$) is the fundamental catalyst that necessarily generates new, hypothesis-laden observations ($\{O\}$). Pure data sources ($S$) remain isolated ($S \times S \to \emptyset$) and cannot trigger epistemic transitions without empirical or theoretical context.
+		\item As soon as the level of observation ($O$) or hypothesis ($H$) is involved, any further algebraic collision ($O \times O$, $O \times H$, $H \times H$) inevitably leads to the evolution and refinement of the continuous hypothesis space ($\{H\}$).
+	\end{itemize}
+	Whenever two information nodes $x, y \in \mathcal{C}$ are linked, the linter evaluates the permissible target categories $z \in \pi(x, y)$ and computes the resulting logical tension via the continuous evaluation function $v(z)$.
+	
+	\subsection{The Role of Definitions as Semantic Type Operators}
+	
+	The category of \emph{Definitions} ($D$) occupies a special position within the epistemic grammar. While Sources ($S$), Observations ($O$), and Hypotheses ($H$) represent concrete epistemic states, Definitions do not serve to describe the world itself, but rather to structure the terms with which it is described. Therefore, a definition does not directly generate new insights about the world. Instead, it determines how other entities can be interpreted, grouped, or typed. Definitions thus act as semantic type operators on existing epistemic objects. Formally, definitions are not ordinary elements of the epistemic space, but rather objects of a meta-level. They do not alter the content of an observation or hypothesis, but rather its semantic interpretation space.
+	
+	For instance, considering the definition of a concept like \emph{mammal}, no new hypothesis about a concrete object is created. The definition merely provides a formal schema against which observations and hypotheses can be classified.
+	
+	\begin{quote}
+		Definition: "Mammal" \\
+		\quad $\rightarrow$ warm-blooded \\
+		\quad $\rightarrow$ vertebrate \\
+		\quad $\rightarrow$ mammary glands
+	\end{quote}
+	
+	Only through the application of this definition to observations or hypotheses do new epistemic connections emerge. The definition itself functions as a semantic framework.
+	
+	Consequently, definitions are not included in the epistemic validity matrix $M_\pi$. Definitions do not produce independent state transitions; rather, they influence the interpretation of already existing states.
+	
+	Intuitively, definitions can be understood as types in a programming system. An observation corresponds to a value, a hypothesis to a statement about values, while a definition specifies to which type these elements belong and which relations between them are permissible.
+	
+	Since the system follows a strict append-only principle, definitions are never overwritten or deleted. If a definition proves to be insufficient or too coarse-grained, a new (independently referenceable version of the) definition is generated and added to the graph.
+	
+	Depending on the orientation and degree of formalization of the specific research project, definitions can cover a broad methodical spectrum: they can be represented both as classical prose text and as precise ontological constructs. In a formal ontology (analogous to description logics or categorical \emph{ologs}), the concept is defined via standardized relations (properties/morphisms) to other classes. This methodical difference can be illustrated using the everyday example of a "cappuccino":
+	
+	\begin{quote}
+		\textbf{Definition (Prose):} \\
+		A cappuccino is a coffee beverage consisting of a base of espresso, prepared with hot milk, and typically topped with milk foam.
+	\end{quote}
+	
+	In practice, established semantic notations exist for machine-readable, ontological mapping that dispense with cryptic logic symbols:
+	
+	\begin{quote}
+		\textbf{Variant 1: Manchester Syntax (OWL Standard)} \\
+		This notation translates structural relations into an intuitive, text-based logic:
+		\begin{verbatim}
+			Class: Cappuccino
+			EquivalentTo: 
+			CoffeeBeverage 
+			and hasBase some Espresso 
+			and hasIngredient some HotMilk 
+			and hasTopping some MilkFoam
+		\end{verbatim}
+	\end{quote}
+	
+	\begin{quote}
+		\textbf{Variant 2: Turtle Notation (RDF Graph Standard)} \\
+		This notation maps the concept directly as a directed graph, as used in knowledge bases:
+		\begin{verbatim}
+			:Cappuccino rdf:type owl:Class ;
+			rdfs:subClassOf :CoffeeBeverage ;
+			:hasBase        :Espresso ;
+			:hasIngredient  :HotMilk ;
+			:hasTopping     :MilkFoam .
+		\end{verbatim}
+	\end{quote}
+	
+	In practice, pure prose definitions quickly reach their limits because, while intuitive to a human reader, they are unsuitable for a reliable automated evaluation of their internal logic. In this case, concepts would remain mere text fragments whose interpretation depends entirely on the reader. Semantic shifts, ambiguities, or inconsistent uses (such as distinguishing it from a latte macchiato based on exact proportions or layering) could not be detected algorithmically.
+	
+	Formulating definitions as ontological constructs offers decisive advantages in this regard. As illustrated in the example above, it allows concepts to be grasped as independent objects and their composition rules as formal relations within a strict structure. This approach proves to be highly practical within the software architecture of TrigBiPy, as it can be mapped directly into graph databases or reasoners. It turns meanings themselves into explicit, computable objects of the system and prevents the knowledge graph from being reduced to a mere collection of unstructured texts. Without this formal layer, TrigBiPy would run the risk of being reduced to a conventional note-taking system or a purely statistical text generator. 
+	
+	The formal definitions therefore form the semantic infrastructure that makes the epistemic grammar machine-evaluable in the first place. This distinction aligns with Carnap's project of fixing meaning through formal reconstruction as well as with the structuralist philosophy of science according to Sneed and Stegmüller, in which scientific concepts are determined not via a subjective understanding of the world, but through their explicit embedding within a formal theoretical framework.
+	
+	\subsection{Truth Values of Epistemic Elements} 
+	The truth value of a hypothesis is not a rigid, hardcoded value within the file; instead, it is dynamically computed by the linter. Instead, for every new inference, the author specifies their level of certainty regarding that logical step (a confidence value). In the case of a mathematical deduction, this value equals 1; for logical or inductive arguments, it is correspondingly lower, such as 0.9. There is also room for creative conjectures: if an idea appears plausible but remains unproven, the author can assign a provisional value (e.g., 0.5). Thus, the system enables exploratory research without constraining the author with an overly rigid formal straightjacket. 
+	
+	For instance, from the fact that many social mammals live in complex group structures ($h_1$) and that these groups only survive in the long term under conditions of high internal stability ($h_2$), a researcher might hypothesize that reciprocal altruism mechanisms (mutual aid) emerged as an evolutionary corrective to stabilize group sizes ($h_3$). Since they are still uncertain whether this connection implies direct causality or if other factors such as environmental resources play a role, they assign a confidence value of 0.5 when instantiating the new element for $h_3$. This procedure illustrates that TrigBiPy does not constitute a purely formal straightjacket but rather acts as an exploratory tool: the researcher explicitly flags for the system that a promising correlation is suspected, although its evidential weight remains low. 
+	
+	Mathematically, this value is injected into the inference matrix and is preserved as a baseline for both the linter and future iterations. If the hypothesis proves tenable through additional sources, the confidence value can be raised in a subsequent step; conversely, in the presence of contradictory evidence, mathematical attack relations take effect to devalue the conjecture's validity. Consequently, human intuition—acting as a "generator of confidence"—becomes an integral component of the algorithmic knowledge representation. 
+	
+	A similar principle applies to observations. Here, however, rather than mapping the logical plausibility of an inference or the intuitive certainty of the author, the metric quantifies the empirical reliability and informational quality of the data source. While the confidence value of a hypothesis describes the inherent uncertainty of a rational or abductive step, the value of an observation reflects the fallibility of the empirical acquisition itself. A measurement from a calibrated scientific instrument thus receives maximum epistemic status, whereas a second-hand anecdotal report enters the inference matrix with a correspondingly reduced baseline value. 
+	
+	For the linter, this differentiation ensures that in the event of a logical contradiction between a highly consistent set of existing hypotheses and a new observation, the theoretical foundation does not necessarily collapse. Instead, the mathematical weighting enables the optimization algorithm to isolate empirical noise or measurement error as the most probable cause of the incoherence, rather than prematurely falsifying a structurally valuable macro-hypothesis. In this manner, TrigBiPy formally captures the reality of scientific practice—where empirical evidence is invariably fraught with inherent uncertainty—and safeguards the stability of the global knowledge graph against faulty data sources.
+	
+	
+	\subsection{Epistemic Granularity and Non-Atomic Knowledge Objects}
+	
+	Many personal knowledge management (PKM) systems, particularly atomistic approaches like the Zettelkasten, operate on the assumption that knowledge can ultimately be reduced to a set of minimally sized, isolated thoughts. TrigBiPy explicitly rejects this assumption. 
+	
+	The epistemic grammar operates on the categories of entities and their relations, rather than on a predefined semantic scale of the represented content. Consequently, an element can be a single statement, an argument, a mathematical proof, a scientific paper, a book, or even a comprehensive research program. For formal processing, the length or complexity of an element is irrelevant; what matters exclusively is its embedding within the network of epistemic relations. Thus, the system does not adhere to a dogma of epistemic atomization, but rather to a principle of progressive explication: the internal structure of an artifact is only further formalized where additional resolution promises a genuine epistemic surplus.
+	
+	The linter does not evaluate the elements in isolation, but rather the connections between them: the permissibility of an epistemic operation, dependencies, attack relations, inference chains, confidence values, and so forth. As a result, knowledge is not reduced to atomic notes. Instead, the system permits the use of non-atomic knowledge objects of arbitrary scale, provided they can function as referenceable elements within the epistemic grammar.
+	
+	This property is of paramount importance for a universal methodology of knowledge acquisition. In actual research workflows, numerous concepts emerge whose meaning derives entirely from the interplay of multiple statements, rendering them impossible to decompose into mutually independent atoms without loss of information. Enforced atomization frequently fragments the body of knowledge and amplifies organizational complexity without generating a corresponding epistemic surplus. Frequently, this even stagnates the actual research work, as the researcher gets bogged down in fragmented minutiae.
+	
+	TrigBiPy therefore replaces the principle of epistemic atomization with the weaker principle of epistemic addressability: every element must be identifiable, referenceable, and evaluable as an independent entity. Whether the internal structure of this element is fine-grained or coarse-grained remains a modeling choice made by the researcher and is not a component of the formal grammar itself.
+	
+	\subsection{Representation of Complex Artifacts}
+	The simplest representation consists in modeling an entire paper as a single hypothesis $h \in H$. This is formally completely permissible and can be particularly useful when working with extensive bodies of literature. However, the disadvantage of this compression is that the linter can only identify incoherences at the level of the entire document. If a partial assumption is falsified, it is no longer traceable which specific component of the argument is affected.
+	
+	For more detailed analyses, the same publication can be step-by-step decomposed into multiple hypotheses. In this process, the paper is broken down. Individual chapters, arguments, or conclusions can be split into autonomous hypotheses $h_1,\dots,h_n$, whose dependencies can be explicitly modeled. A scientific paper can then be viewed as a source of formal entities from which definitions ($D$), observations ($O$), and hypotheses ($H$) are extracted. The choice of granularity is not a component of the grammar itself, but rather a modeling decision made by the researcher. A complex artifact can initially be introduced as a single hypothesis and iteratively decomposed only when needed. The original paper node remains preserved as a historical entry point. This finer resolution enables the linter to pinpoint local contradictions, circular reasoning, or flawed premises without blanket devaluation of the entire publication. However, this entails additional effort and can clutter the system.
+	
+	\section{Dynamics of Knowledge Acquisition}
+	
+	\subsection{Epistemic Cardinality}
+	To define the cardinality of a link, we locally consider the space of all theoretically potentially constructible expressions.
+	
+	\begin{definition}[Space of Potential Artifacts]
+		Let $\mathbb{W}_{\text{pot}}$ be an infinite set of all linguistically or formally logically constructible artifacts.
+	\end{definition}
+	
+	\begin{definition}[Local Typing]
+		We define a typing function $\mu_{\text{cat}}: \mathbb{W}_{\text{pot}} \to \mathcal{C}$ that assigns one of the three categories from $\mathcal{C} = \{S, O, H\}$ to a potential artifact.
+	\end{definition}
+	
+	When we link two artifacts, the system generates new elements in $\mathbb{W}_{\text{pot}}$.
+	
+	\begin{definition}[Semantic Generation Space]
+		Let $\Gamma_{\text{gen}}: \mathbb{W}_{\text{pot}} \times \mathbb{W}_{\text{pot}} \to \mathcal{P}(\mathbb{W}_{\text{pot}})$ be a generative function that generates a set of substantially plausible successor artifacts from two source artifacts $a, b \in \mathbb{W}_{\text{pot}}$.
+	\end{definition}
+	
+	A generated artifact $c \in \Gamma_{\text{gen}}(a,b)$ only becomes a valid epistemic step if its assigned category ($\mu_{\text{cat}}(c)$) is syntactically permitted by the grammar ($\pi$).
+	
+	\begin{definition}[Valid Derivation Set]
+		The locally defined set of syntactically legal successor artifacts $\mathbb{V}_{\text{val}}$ is:
+		\[
+		\mathbb{V}_{\text{val}}(a, b) := \{ c \in \Gamma_{\text{gen}}(a, b) \mid \mu_{\text{cat}}(c) \in \pi(\mu_{\text{cat}}(a), \mu_{\text{cat}}(b)) \}
+		\]
+	\end{definition}
+	
+	\begin{definition}[Epistemic Cardinality $\kappa$]
+		The cardinality of an epistemic link corresponds to the cardinality of the valid derivation set:
+		\[
+		\kappa(a, b) := |\mathbb{V}_{\text{val}}(a, b)|
+		\]
+	\end{definition}
+	
+	\begin{itemize}
+		\item \textbf{Total Epistemic Blockade ($\kappa = 0$):}  
+		Let $a \in \mathbb{W}_{\text{pot}}$ be the observation ($\mu_{\text{cat}}(a) = O$) "The street is wet" and $b \in \mathbb{W}_{\text{pot}}$ be the hypothesis ($\mu_{\text{cat}}(b) = H$) "The sum of angles in a triangle is 180 degrees". The generation function yields no plausible links: $\Gamma_{\text{gen}}(a,b) = \emptyset \implies \kappa = 0$. (Stagnation).
+		
+		\item \textbf{Unique Synthesis ($\kappa = 1$):}  
+		Let $a$ be the observation $O$ "It is raining" and $b$ be the hypothesis $H$ "Rain makes streets wet" ($v(b)=0.95$). The generation function constructs exactly one successor sentence $c$ with $\mu_{\text{cat}}(c) = H$, corresponding to the statement "The street is getting wet". Since $H \in \pi(O, H)$ is permitted, $\kappa = 1$ holds. (Rapid convergence).
+		
+		\item \textbf{Finite Ambiguity ($\kappa > 1$):}  
+		From an observation and a hypothesis emerge two contradictory successor hypotheses $c_1, c_2$ ($\mu_{\text{cat}}(c_i) = H$). Since both are permissible, $\kappa = 2$. This splits the certainty across both paths ($v(c_1) + v(c_2) \le 1$) and indicates a local branching.
+		
+		\item \textbf{Open Ambiguity ($\kappa = \infty$):}  
+		Under a vague, underdefined hypothesis, $\Gamma_{\text{gen}}(a,b)$ is infinitely large. The system is in a state of epistemic saturation ($\kappa = \infty$) and requires axiomatic constraints ($v(a)=1$) to truncate the solution space.
+	\end{itemize}
+	
+	\subsection{Exclusion Clusters and Topological Partitioning}
+	
+	To model alternative explanatory approaches and structural ambiguities, the architecture introduces a meta-level of \emph{exclusion clusters}. Let $\mathcal{C}$ be the set of exclusive hypothesis clusters. A cluster $c \in \mathcal{C}$ partitions a set of elementary hypotheses $H_c \subset H$ that are mutually logically exclusive. 
+	
+	For the mathematical evaluation of these clusters, the system strictly distinguishes between complete and incomplete sets of alternatives:
+	
+	\begin{enumerate}
+		\item \textbf{Complete Partitions (Exact Either-Or):} If the cluster represents a logically closed system in which exactly one of the hypotheses must be absolutely true (law of the excluded middle, e.g., $h_1 \equiv \text{``System is A''}$ and $h_2 \equiv \text{``System is not A''}$), the sum of the validities is strictly fixed at $1$:
+		\[
+		\sum_{h \in H_c} v(h) = 1
+		\]
+		
+		\item \textbf{Incomplete Partitions (Partial Exclusion):} If, on the other hand, the cluster describes mutually exclusive but non-exhaustive features (e.g., $h_1 \equiv \text{``The object is red''}$ and $h_2 \equiv \text{``The object is green''}$), the true state may lie outside this selection (e.g., blue). In this case, the sum is bounded from above but can be less than $1$:
+		\[
+		\sum_{h \in H_c} v(h) \le 1
+		\]
+	\end{enumerate}
+	
+	The linter treats the elements within $H_c$ as implicitly negatively coupled with one another. If the validity $v(h_i)$ of a specific hypothesis increases due to the influx of supporting evidence or complementary arguments, this constraint enforces a mathematical devaluation of the competing hypotheses. In the case of a complete partition, the absolute falsification of all alternatives except one necessarily leads to the maximum validation ($v=1$) of the remaining hypothesis. This forces the generator to partition the search space along cleanly defined, orthogonal fault lines.
+	
+	\subsection{The Epistemic Inference Matrix and Premise Propagation}
+	The structural and logical interdependence of hypotheses is encoded via a directed association matrix $M_A$ of dimension $|H| \times |H|$. An entry $M_A[i, j] = \omega \in [0, 1]$ defines the weight to which the validity of hypothesis $h_i$ builds upon the premise that $h_j$ is true ($h_i \leftarrow h_j$).
+	
+	To compute value propagation across nested inference chains, TrigBiPy relies on the Gödel t-norm of fuzzy logic. If a complex abstraction $h_i$ is based on a set of premises $\text{Dep}(i) \subseteq H$, the upper bound of its validity is determined by the weakest link in the logical chain:
+	\[
+	v(h_i) \le \min_{j \in \text{Dep}(i)} \{ v(h_j) \}
+	\]
+	If a fundamental baseline assumption breaks down, the maximum permissible validity corridor of all theoretical abstractions built upon it automatically collapses along the directed inference graph.
+	
+	\subsection{Non-Destructive Error Handling via Attack Relations} Since the system follows a strict append-only paradigm (no deletion of files), handling falsified or incoherent hypotheses requires a mathematical approach. If the linter uncovers an error within the graph, the generator reacts with new hypotheses, etc., that feature attack relations directed at the faulty element. Instead of removing an erroneous hypothesis, a new element is generated that executes a formal attack on the incoherent hypothesis, thereby lowering its validity value. The "false" hypothesis is preserved within the system as a cautionary artifact.
+	
+	Deleting nodes is strictly forbidden (preservation of historicity). The system sets grow strictly monotonically: $\mathfrak{X}_{t+1} \supseteq \mathfrak{X}_t$. Instead of entity deletion upon falsification, the assigned value of a hypothesis tends toward zero ($v(h) \to 0$). Furthermore, the system generates a dynamic attack relation $\mathcal{R}_t \subseteq \mathfrak{H}_t \times \mathfrak{H}_t$. A mathematical attack reduces the value of the attacked hypothesis as a function of the attacker's value.
+	
+	\begin{definition}[Epistemic Entropy]
+		The \emph{epistemic entropy} $H_E$ of the system measures the accumulated logical and probabilistic tension across all mutually contradictory pairs of hypotheses:
+		\[
+		H_E(E_t) := \sum_{\substack{h_i, h_j \in \mathfrak{H}_t \\ h_i \land h_j \vdash_{A} \bot}} v(h_i) \cdot v(h_j)
+		\]
+		When two mutually incompatible hypotheses simultaneously exhibit a high level of certainty, this maximizes entropy. The goal of the continuous linter is to minimize this systemic friction (incoherence) through an optimized re-evaluation procedure:
+		\[
+		op^* = \arg\min_{op \in \mathcal{O}_{val}} \Delta H_E(E_t \cup \{op\})
+		\]
+	\end{definition}
+	
+	\subsection{Philosophy of Science Implications}
+	\begin{itemize}
+		\item \textbf{Epistemic Convergence and Attractor Structure:}
+		Scientific stabilization is not a monotonic accumulation process of data, but rather a recursive attractor process within the space of epistemic states. Assuming a finite injection of fundamentally new sources ($|S_{\text{neu}}| < \infty$), the system converges toward a stable hypothesis network in which entropy is minimized ($H_E \to 0$). Successful core hypotheses asymptotically stabilize as fixed points (attractors) with $v(h^*) \to 1$.
+		
+		\item \textbf{Correction of Empiricist Induction:}
+		This approach corrects the classic empiricist misconception: new insights do not arise through naive induction from pure data, but necessarily by resolving existing fields of tension within the continuous space. When an anomalous observation $o_{\text{new}}$ collides with an established hypothesis $h_{\text{alt}}$ ($v(h_{\text{alt}}) \approx 1$), a local entropy maximum is created, since $h_{\text{alt}} \land o_{\text{new}} \vdash_A \bot$. Only the synthesis of a higher-level alternative hypothesis $h_{\text{neu}}$—which integrates the anomaly and mounts a valid information-theoretic attack on $h_{\text{alt}}$—lowers the global entropy by devaluing the value of the old hypothesis ($v(h_{\text{alt}}) \to 0$).
+		
+		\item \textbf{Incoherence as a Primary Resource:}
+		Knowledge acquisition is thus neither a static search query in knowledge graphs (PKM) nor a purely statistical correlation analysis (as seen in classical LLMs). It is a \emph{constraint-based rewriting system} whose primary computational resource is the logical tension (incoherence) and the resulting gradients between hypotheses. Contradictions are not system errors but rather driving forces that compel a continuous adjustment of epistemic certainties.
+	\end{itemize}
+	
+	\subsection{Hypothesis Saturation and Symmetry Breaking}
+	The question arises whether the system necessarily converges into a completely unambiguous attractor space given a fixed set of sources $\mathfrak{S}_t = \text{const} $.
+	
+	\begin{theorem}[Epistemic Stagnation]
+		For a static set of sources, a fixed point with $H_E = 0$ does not necessarily exist. If no operational transformation exists to break the symmetry between competing hypotheses $h_1, h_2 \in \mathfrak{H}_t$ with $h_1 \land h_2 \vdash_A \bot$, the system converges into an unresolved equilibrium:
+		\[
+		v(h_1) \approx v(h_2) \approx 0.5 \implies H_E = \text{const} > 0
+		\]
+	\end{theorem}
+	
+	In the history of science, this manifests as the permanent coexistence of underdetermined theories, such as the competing interpretations of quantum mechanics (the Copenhagen interpretation vs. the Many-Worlds theory), which operate on the same baseline of sources and systemically persist in an unresolvable state of tension.
+	
+	\begin{theorem}[Symmetry Breaking and Cascading Collapse]
+		Let $E_t$ be a system in a state of stagnation ($H_E > 0$). If a new imperative element is injected into the source set ($\mathfrak{S}_{t+1} = \mathfrak{S}_t \cup \{s_{\text{new}}\}$), it results in a new observation $o_{\text{new}} \in \mathfrak{O}_{t+2}$. If $o_{\text{new}}$ collides asymmetrically with the hypotheses (e.g., it supports $h_2$ but stands in hard logical contradiction to $h_1$), the mathematical symmetry breaks. The value of $h_1$ abruptly collapses ($v(h_1) \to 0$), while $v(h_2)$ tends toward $1$.
+	\end{theorem}
+	
+	This sudden algebraic resolution formally describes the process known in the history of science as a revolutionary paradigm shift: a sudden topological graph collapse and the rapid redistribution of epistemic weight across the entire construct of hypotheses.
+	
+	\subsection{Type-Theoretic Foundation and the Curry-Howard Isomorphism}
+	
+	To distinguish the structural stringency of \emph{TrigBiPy} from purely statistical, unstructured text generators, the Curry-Howard isomorphism provides the fundamental theoretical foundation. Within the framework of this correspondence, every epistemic entity within the system—specifically definitions ($D$) and hypotheses ($H$)—is interpreted not as a mere text node, but as a formal type. The process of logical inference, in which the generator links existing statements into new chains of argumentation, thus corresponds exactly to the construction of terms (programs) that satisfy these types.
+	
+	Since informal prose text is inherently vague and eludes a rigid syntax, this type-theoretic interpretation serves primarily as a strong structural analogy in empirical discourses. Here, the system enforces a formal disciplining of argumentation that approximates the behavior of functional type systems. 
+	
+	However, as soon as the framework shifts, for instance, into the mathematical-axiomatic mode described in \ref{math}, this analogy transforms into a mathematical proof: in the sense of Curry-Howard, the synthesis of a flawless proof path by the generator corresponds exactly to the instantiation of a valid program whose type safety is guaranteed by the linter acting as a proof assistant (e.g., Lean4). Consequently, epistemic validity is equated directly with computational correctness.
+	
+	\subsection{Category-Theoretic Formalization and Attractors}
+	To capture the structural properties of knowledge dynamics with formal precision, we model \emph{TrigBiPy} itself as a weighted category $\mathcal{E}$, within which knowledge acquisition is mapped as an iterative convergence process driven by epistemic endofunctors.
+	
+	\begin{itemize}
+		\item \textbf{Objects ($Ob(\mathcal{E})$):} The fundamental categories $\mathcal{C}$ function as formal objects in the category-theoretic sense. A specific instantiation of the system graph at a given time $t$ is a network of morphisms between these objects.
+		\item \textbf{Morphisms ($Hom(X, Y)$):} Every conscious epistemic step corresponds to a morphism. The epistemic matrix $M_\pi$ defines the set of all legal structural transitions in $\mathcal{E}$.
+	\end{itemize}
+	
+	If two separate, hypothesis-laden observations $o_1$ and $o_2$ cannot be consistently unified under a common object during the process of knowledge acquisition, the corresponding diagram fails to commute. The failure of the universal pullback property expresses itself directly within the hypothesis space: the incompatibility generates two competing nodes $h_1, h_2$, whose overlap represents a direct measure of the \emph{epistemic curvature} of the space. The curvature is directly proportional to the system entropy $H_E$. The mathematical linter formally forces the system to algebraically reshape the global graph until the curvature is minimized and category-theoretic commutativity is approximately restored.
+	
+	\section{Applications}
+	
+	\subsection{Use Case: Axiomatic Systems and Pure Mathematics} \label{math}
+	
+	The universality of the epistemic grammar is demonstrated by the fact that it is not restricted to empirical scientific discourses, but maps the axiomatic structure of pure mathematics as a formal limiting case. To operationalize this use case, the system is initially instantiated exclusively with a set of formal axioms—for example, the axioms of Zermelo-Fraenkel set theory ($\mathsf{ZFC}$). In this scenario, the generator acts as a purely deductive engine that generates mathematical theorems and proof chains.
+	
+	Here, the linter assumes the role of an automated theorem prover; architecturally, this can be realized via an interface to existing Lean4 or Coq instances. Since mathematical deductions are by definition error-free, the system operates in this mode with maximum confidence values ($v = 1$). 
+	
+	This use case demonstrates the completeness of the framework: since mathematical truth is defined as contradiction-free coherence within an axiomatic system, the epistemic entropy $H_E$ collapses toward zero for correct proofs. Thus, TrigBiPy proves that it can map the entire spectrum of human knowledge—from hard, structure-defining a priori mathematics to fallible, a posteriori empirical research—within a single, unified algorithmic architecture.
+	
+	\lstset{
+		language=Python,
+		basicstyle=\ttfamily\footnotesize,
+		keywordstyle=\color{blue},
+		stringstyle=\color{red},
+		commentstyle=\color{green!60!black},
+		breaklines=true,
+		frame=single,
+		extendedchars=true,
+		inputencoding=utf8/latin1
+	}
+	
+	\subsection{Proof of Concept: Minimum Viable Product}
+	
+	\lstinputlisting{trigbipy_mvp.py}
+	
+	\subsection{Algorithmic Validation and Knowledge-as-Code}
+	The formal framework of TrigBiPy allows for a direct algorithmic implementation according to the \emph{Knowledge-as-Code} paradigm. The graph is implemented as a local file system (directories for sources, observations, and hypotheses, present as Markdown files with standardized YAML metadata for the certainty values $v$). Git serves as the native infrastructure here: a school of thought corresponds to a branch, a logical tension manifests as a merge conflict, and the devaluation of a falsified assumption is a revert.
+	
+	The concrete validation of the architecture is possible through various approaches:
+	\begin{itemize}
+		\item \textbf{Prolog \& Lean4 Kernel:} When researching formal matters (logic, mathematics, ...), standard verification tools can be used.
+		\item \textbf{Probabilistic Logic Programming (e.g., ProbLog):} For the resolution of graph edges and inference chains under consideration of the continuous validity values $v(h)$.
+		\item \textbf{SAT Solver / MaxSAT:} Checking for logical contradictions within hard constraints and axioms, as well as determining the maximum consistent subset of hypotheses.
+		\item \textbf{Dependent Type Systems:} Mapping hypotheses as types, where the continuous value $v$ is validated via a metric proof-weighting system.
+		\item \textbf{LLM Approaches:} Large Language Models are fundamentally deployed purely heuristically to generate new elements. However, they can be utilized for inference, particularly within non-formal contexts.
+		\item \textbf{Human Peer Reviewing:} In certain cases, a technical implementation is too costly, and maximum formal validity is not required.
+	\end{itemize}
+	
+	\subsection{TrigBiPy as a Framework for AGI}
+	The current paradigm of Artificial Intelligence (primarily LLMs) is based on the probabilistic prediction of the next token at a purely superficial semantic level. These systems fail at genuine, deep knowledge acquisition.
+	
+	TrigBiPy offers a completely new solution here. Small, local LLMs merely serve as intuitive translators and heuristic proposal generators for the operations of the epistemic grammar. The hard compiler checks the mathematical attack relations, calculates the epistemic entropy $H_E$, and enforces type safety. 
+	
+	\textbf{Incoherence is all you need.} Incoherence is the engine of knowledge acquisition. Restructuring the model into an active AGI agent is merely an optimization problem regarding the decrease in incoherence $\Delta K = H_E(E_t) - H_E(E_{t+1})$.
+	
+	\subsection{Discussion and Outlook: The Scientific Method}
+	
+	TrigBiPy is not a mere optimization tool, but in all probability an operationalization of the universal scientific method. The framework resolves the historical dichotomy of the philosophy of science by proving the abductive idea (Peirce), strict falsification (Popper), and revolutionary paradigm shifts (Kuhn) to be emergent properties of a single mathematical principle: the global minimization of epistemic entropy $H_E$ on a constraint graph. Scientific progress is thus transformed from a philosophical discourse into a computable optimization problem.
+	
+	\section{Further Topics}
+	For a comprehensive scientific contextualization and deepening of the theoretical foundation, however, the consideration of the following meta-levels and extension options is recommended:
+	
+	\begin{itemize}
+		\item \textbf{Fundamental Questions:} What exactly is being optimized? What mathematical guarantees exist? Where lie the limitations? And how does the system relate to existing theories in computer science, logic, and the philosophy of science?
+		\item \textbf{Computability and Complexity:} An explicit analysis of the algorithmic complexity is essential. Since the system addresses various optimization and consistency problems (e.g., minimization of $H_E$, MaxSAT validation), it should be investigated which subproblems are NP-complete and whether efficient solution paths emerge through restrictions to specific classes of constraint graphs.
+		
+		\item \textbf{Convergence Theory:} The iterative nature of the generator-linter process requires a mathematical foundation. It should be examined whether the epistemic entropy $H_E$ can function as a Lyapunov function to derive formal convergence arguments for the steady state. Alternatively, metastable states, oscillations, and cycles must be included in the analysis.
+		
+		\item \textbf{Epistemic Self-Reference:} The integration of meta-statements about hypotheses themselves leads the system into the realm of reflection logics and Gödelian questions. Explicit discussion of epistemic self-modeling could offer methodological added value here.
+		
+		\item \textbf{Comparison to Bayesian Theory:} To differentiate it from purely probabilistic approaches, a systematic comparison is useful. In doing so, concepts such as prior distributions, likelihood updates, and the specific differentiating features of the system (e.g., type restrictions and attack relations) should be explicitly set forth.
+		
+		\item \textbf{Connection to Argumentation Frameworks:} The formal similarity of the attack relation $R_t$ to abstract argumentation frameworks (according to Dung) enables recourse to established theories on defense, stability, and preferred extensions.
+		
+		\item \textbf{Handling Observation Uncertainty:} To increase realism, the modeling of measurement errors should be considered. Assigning confidence values to observations would enable explicit modeling of source quality.
+		
+		\item \textbf{Emergence and Compression:} The relationship between knowledge acquisition and structural complexity can be theoretically underpinned via concepts such as \textit{Minimum Description Length} or Kolmogorov complexity. Good theories could be defined here as macro-hypotheses that explain observations with minimal structural complexity.
+		
+		\item \textbf{Philosophy of Science Contextualization:} A discourse in the context of classical positions (Popper, Kuhn, Lakatos, Feyerabend) as well as a direct connection to Peirce's theory of abduction would integrate the model into the existing scientific-theoretical debate.
+		
+		\item \textbf{Agency Theory:} Expanding from a knowledge machine to an action machine (agent) would require a goal system as well as methods for active data collection. Such an agent could choose actions that maximize the expected information gain.
+		
+		\item \textbf{Formal Definition of Epistemic Gain:} A central contribution could lie in the mathematical definition of epistemic gain $\Delta K$:
+		\begin{equation}
+			\Delta K = H_E(E_t) - H_E(E_{t+1})
+		\end{equation}
+		This would establish the reduction of epistemic entropy while simultaneously preserving explanatory power as an explicit objective function, formally reinforcing the \textit{``Incoherence is all you need''} approach.
+	\end{itemize}
+\newpage
+
+\begin{thebibliography}{99}
+	
+	\bibitem{235}
+	Sneed, J. D. (1971). 
+	\emph{The Logical Structure of Mathematical Physics}. 
+	Springer, Dordrecht.
+	
+	\bibitem{237}
+	Dung, P. M. (1995). 
+	On the acceptability of arguments and its fundamental role in nonmonotonic reasoning, logic programming and n-person games. 
+	\emph{Artificial Intelligence}, 77(2), 321--357.
+	
+	\bibitem{238}
+	Stegmüller, W. (1979). 
+	\emph{The Structuralist View of Theories: A Possible Analogue of the Bourbaki Programme in Physical Science}. 
+	Springer, Berlin, Heidelberg.
+	
+	\bibitem{240}
+	Moura, L. d., \& Ullrich, S. (2021). 
+	The Lean 4 Theorem Prover and Programming Language. 
+	\emph{International Conference on Automated Deduction}, 625--635. Springer, Cham.
+	
+	\bibitem{241}
+	Bush, V. (1945). 
+	As we may think. 
+	\emph{The Atlantic Monthly}, 176(1), 101--108.
+	
+	\bibitem{242}
+	Nelson, T. H. (1965). 
+	Complex information processing: a file structure for the complex, the changing and the indeterminate. 
+	\emph{Proceedings of the 1965 20th ACM national conference}, 84--100.
+	
+	\bibitem{243}
+	Feyerabend, P. (1975). 
+	\emph{Against Method: Outline of an Anarchistic Theory of Knowledge}. 
+	New Left Books, London.
+	
+	\bibitem{244}
+	Popper, K. (1934). 
+	\emph{Logik der Forschung: Zur Erkenntnistheorie der modernen Naturwissenschaft}. 
+	Julius Springer, Wien.
+	
+	\bibitem{245}
+	Kuhn, T. S. (1962). 
+	\emph{The Structure of Scientific Revolutions}. 
+	University of Chicago Press, Chicago.
+	
+	\bibitem{246}
+	Peirce, C. S. (1931). 
+	\emph{Collected Papers of Charles Sanders Peirce}. 
+	Harvard University Press, Cambridge.
+	
+	\bibitem{247}
+	Carnap, R. (1928). 
+	\emph{Der logische Aufbau der Welt}. 
+	Weltkreis-Verlag, Berlin-Schlachtensee.
+	
+	\bibitem{248}
+	Spivak, D. I. (2014). 
+	\emph{Category Theory for the Sciences}. 
+	MIT Press, Cambridge.
+	
+	\bibitem{249}
+	Biere, A., Heule, M., \& van Maaren, H. (Eds.). (2009). 
+	\emph{Handbook of Satisfiability}. 
+	IOS Press, Amsterdam.
+	
+	\bibitem{250}
+	Wadler, P. (2015). 
+	Propositions as types. 
+	\emph{Communications of the ACM}, 58(12), 75--84.
+	
+	\bibitem{251}
+	De Raedt, L., Kimmig, A., \& Toivonen, H. (2007). 
+	ProbLog: A probabilistic Prolog and its application in bioinformatics. 
+	\emph{IJCAI Proceedings-International Joint Conference on Artificial Intelligence}, 20, 2479.
+	
+	\bibitem{323}
+	Lakatos, I. (1970). 
+	Falsification and the methodology of scientific research programmes. 
+	\emph{Criticism and the Growth of Knowledge}, 91--196.
+	
+	\bibitem{324}
+	Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A. N., ... \& Polosukhin, I. (2017). 
+	Attention is all you need. 
+	\emph{Advances in Neural Information Processing Systems}, 30, 5998--6008.
+	
+	\bibitem{387}
+	Gärdenfors, P. (1988). 
+	\emph{Knowledge in Flux: Modeling the Dynamics of Epistemic States}. 
+	MIT Press, Cambridge.
+	
+	\bibitem{388}
+	Alchourrón, C. E., Gärdenfors, P., \& Makinson, D. (1985). 
+	On the logic of theory change: Partial meet contraction and revision functions. 
+	\emph{Journal of Symbolic Logic}, 50(2), 510--530.
+	
+	\bibitem{390}
+	Ruelle, D. (1989). 
+	\emph{Elements of Differentiable Dynamics and Bifurcation Theory}. 
+	Academic Press, San Diego.
+	
+	\bibitem{396}
+	Mac Lane, S. (1978). 
+	\emph{Categories for the Working Mathematician}. 
+	Springer, New York.
+	
+	\bibitem{397}
+	Hintikka, J. (1962). 
+	\emph{Knowledge and Belief: An Introduction to the Logic of the Two Notions}. 
+	Cornell University Press, Ithaca.
+	
+	\bibitem{398}
+	Howson, C., \& Urbach, P. (2006). 
+	\emph{Scientific Reasoning: The Bayesian Approach}. 
+	Open Court Publishing, Chicago.
+	
+	\bibitem{411}
+	Howard, W. A. (1980). 
+	The formulae-as-types notion of construction. 
+	\emph{To H. B. Curry: Essays on Combinatory Logic, Lambda Calculus and Formalism}, 479--490.
+	
+	\bibitem{428}
+	Grünwald, P. D. (2007). 
+	\emph{The Minimum Description Length Principle}. 
+	MIT Press, Cambridge.
+	
+	\bibitem{433}
+	Li, M., \& Vitányi, P. (2008). 
+	\emph{An Introduction to Kolmogorov Complexity and Its Applications}. 
+	Springer, New York.
+	
+	\bibitem{435}
+	Marcus, G., \& Davis, E. (2020). 
+	\emph{Rebooting AI: Building Artificial Intelligence We Can Trust}. 
+	Pantheon Books, New York.
+	
+	\bibitem{441}
+	Sutskever, I., Vinyals, O., \& Le, Q. V. (2014). 
+	Sequence to sequence learning with neural networks. 
+	\emph{Advances in Neural Information Processing Systems}, 27, 3104--3112.
+	
+	\bibitem{446}
+	Silver, D., Huang, A., Maddison, C. J., Guez, A., Sifre, L., Van Den Driessche, G., ... \& Hassabis, D. (2016). 
+	Mastering the game of Go with deep neural networks and tree search. 
+	\emph{Nature}, 529(7587), 484--489.
+	
+	\bibitem{valiela2001}
+	Valiela, I. (2001). 
+	\emph{Doing Science: Design, Conduct, and Communication of Research}. 
+	Oxford University Press, Oxford.
+	
+\end{thebibliography}
+\end{document}
